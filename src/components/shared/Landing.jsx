@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaChevronLeft, FaChevronRight, FaShoppingBag } from 'react-icons/fa';
-import videoWatch from '../../assets/11965317-uhd_3840_2160_24fps.mp4';
-import Helmet from 'react-helmet'
+import React, { useState, useEffect, useRef } from "react";
+import { FaChevronLeft, FaChevronRight, FaShoppingBag } from "react-icons/fa";
+import videoWatch from "../../assets/11965317-uhd_3840_2160_24fps.mp4";
+import Helmet from "react-helmet";
 const EcommerceBannerSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -11,55 +11,58 @@ const EcommerceBannerSlider = () => {
   // SEO-optimized slides with rich schema data
   const slides = [
     {
-      type: 'image',
-      content: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a',
-      alt: 'Luxury watches collection with discount offer',
+      type: "image",
+      content: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a",
+      alt: "Luxury watches collection with discount offer",
       title: "Summer Sale 2023",
       subtitle: "Up to 40% Off Premium Watches",
-      description: "Limited time offer on selected luxury timepieces. Free shipping and 2-year warranty included.",
+      description:
+        "Limited time offer on selected luxury timepieces. Free shipping and 2-year warranty included.",
       cta: "Shop Now",
-      buttonVariant: 'primary',
-      textPosition: 'left',
+      buttonVariant: "primary",
+      textPosition: "left",
       schema: {
         "@type": "Offer",
-        "name": "Summer Sale 2023",
-        "description": "Limited time 40% discount on luxury watches",
-        "priceCurrency": "USD",
-        "url": "/summer-sale"
-      }
+        name: "Summer Sale 2023",
+        description: "Limited time 40% discount on luxury watches",
+        priceCurrency: "USD",
+        url: "/summer-sale",
+      },
     },
     {
-      type: 'video',
+      type: "video",
       content: videoWatch,
-      alt: '3D animation of premium chronograph watch',
+      alt: "3D animation of premium chronograph watch",
       title: "New Collection",
       subtitle: "Exclusive Timepieces",
-      description: "Discover our latest designs with cutting-edge technology and craftsmanship.",
+      description:
+        "Discover our latest designs with cutting-edge technology and craftsmanship.",
       cta: "View Collection",
-      buttonVariant: 'secondary',
-      textPosition: 'center',
+      buttonVariant: "secondary",
+      textPosition: "center",
       schema: {
         "@type": "ProductCollection",
-        "name": "New Watch Collection",
-        "description": "Premium chronograph watches with advanced features"
-      }
+        name: "New Watch Collection",
+        description: "Premium chronograph watches with advanced features",
+      },
     },
     {
-      type: 'image',
-      content: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49',
-      alt: 'Close-up of luxury wristwatch with leather strap',
+      type: "image",
+      content: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49",
+      alt: "Close-up of luxury wristwatch with leather strap",
       title: "Free Shipping",
       subtitle: "On All Orders Over $500",
-      description: "Enjoy complimentary worldwide shipping and easy returns on premium purchases.",
+      description:
+        "Enjoy complimentary worldwide shipping and easy returns on premium purchases.",
       cta: "Learn More",
-      buttonVariant: 'outline',
-      textPosition: 'right',
+      buttonVariant: "outline",
+      textPosition: "right",
       schema: {
         "@type": "ShippingDeliveryTime",
-        "name": "Free Shipping Offer",
-        "description": "Free shipping on orders over $500"
-      }
-    }
+        name: "Free Shipping Offer",
+        description: "Free shipping on orders over $500",
+      },
+    },
   ];
 
   // Handle slide transitions
@@ -87,11 +90,11 @@ const EcommerceBannerSlider = () => {
 
   // Handle video play when slide becomes active
   useEffect(() => {
-    if (slides[currentSlide].type === 'video' && videoRef.current) {
+    if (slides[currentSlide].type === "video" && videoRef.current) {
       videoRef.current.currentTime = 0;
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
-        playPromise.catch(e => console.log("Auto-play prevented:", e));
+        playPromise.catch((e) => console.log("Auto-play prevented:", e));
       }
     }
   }, [currentSlide]);
@@ -122,18 +125,18 @@ const EcommerceBannerSlider = () => {
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebPage",
-          "name": "Luxury Watches Collection",
-          "description": "Premium timepieces with exclusive offers",
-          "breadcrumb": {
+          name: "Luxury Watches Collection",
+          description: "Premium timepieces with exclusive offers",
+          breadcrumb: {
             "@type": "BreadcrumbList",
-            "itemListElement": slides.map((slide, index) => ({
+            itemListElement: slides.map((slide, index) => ({
               "@type": "ListItem",
-              "position": index + 1,
-              "name": slide.title,
-              "item": `#slide-${index}`
-            }))
+              position: index + 1,
+              name: slide.title,
+              item: `#slide-${index}`,
+            })),
           },
-          "mainEntity": slides.map(slide => slide.schema)
+          mainEntity: slides.map((slide) => slide.schema),
         })}
       </script>
     );
@@ -144,10 +147,22 @@ const EcommerceBannerSlider = () => {
       {/* SEO Meta Tags */}
       <Helmet>
         <title>Luxury Watches | Premium Timepieces & Collections</title>
-        <meta name="description" content="Discover our exclusive collection of luxury watches with special offers. Free shipping on orders over $500." />
-        <meta name="keywords" content="luxury watches, premium timepieces, watch collection, designer watches, limited edition watches" />
-        <meta property="og:title" content="Luxury Watches Collection | Premium Timepieces" />
-        <meta property="og:description" content="Explore our curated selection of high-end watches with exclusive offers." />
+        <meta
+          name="description"
+          content="Discover our exclusive collection of luxury watches with special offers. Free shipping on orders over $500."
+        />
+        <meta
+          name="keywords"
+          content="luxury watches, premium timepieces, watch collection, designer watches, limited edition watches"
+        />
+        <meta
+          property="og:title"
+          content="Luxury Watches Collection | Premium Timepieces"
+        />
+        <meta
+          property="og:description"
+          content="Explore our curated selection of high-end watches with exclusive offers."
+        />
         <meta property="og:type" content="website" />
         {slides[currentSlide] && (
           <meta property="og:image" content={slides[currentSlide].content} />
@@ -156,7 +171,7 @@ const EcommerceBannerSlider = () => {
       </Helmet>
 
       {/* Banner Slider */}
-      <section 
+      <section
         className="relative w-full h-[70vh] md:h-[80vh] overflow-hidden bg-gray-100"
         aria-label="Promotional banner slider"
         onMouseEnter={handleMouseEnter}
@@ -164,23 +179,41 @@ const EcommerceBannerSlider = () => {
       >
         {/* Slides */}
         {slides.map((slide, index) => (
-          <div 
+          <div
             key={index}
             id={`slide-${index}`}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 z-0' : 'opacity-0 z-0'}`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100 z-0" : "opacity-0 z-0"
+            }`}
             aria-hidden={index !== currentSlide}
           >
-            {slide.type === 'image' ? (
+            {slide.type === "image" ? (
               <div className="relative w-full h-full">
-                <img 
-                  src={slide.content} 
+                <img
+                  src={slide.content}
                   alt={slide.alt}
                   className="w-full h-full object-cover object-center"
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  fetchpriority={index === 0 ? 'high' : 'low'}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchpriority={index === 0 ? "high" : "low"}
                 />
-                <div className={`absolute inset-0 bg-black/30 flex items-center ${slide.textPosition === 'left' ? 'justify-start' : slide.textPosition === 'right' ? 'justify-end' : 'justify-center'}`}>
-                  <div className={`px-6 md:px-12 lg:px-24 max-w-2xl ${slide.textPosition === 'left' ? 'text-left' : slide.textPosition === 'right' ? 'text-right' : 'text-center'}`}>
+                <div
+                  className={`absolute inset-0 bg-black/30 flex items-center ${
+                    slide.textPosition === "left"
+                      ? "justify-start"
+                      : slide.textPosition === "right"
+                      ? "justify-end"
+                      : "justify-center"
+                  }`}
+                >
+                  <div
+                    className={`px-6 md:px-12 lg:px-24 max-w-2xl ${
+                      slide.textPosition === "left"
+                        ? "text-left"
+                        : slide.textPosition === "right"
+                        ? "text-right"
+                        : "text-center"
+                    }`}
+                  >
                     {slide.subtitle && (
                       <p className="text-lg md:text-xl text-amber-400 mb-2 animate-fadeInUp uppercase tracking-wider font-medium">
                         {slide.subtitle}
@@ -193,11 +226,23 @@ const EcommerceBannerSlider = () => {
                       {slide.description}
                     </p>
                     <div className="animate-fadeInUp delay-300">
-                      <button 
+                      <button
                         className={`
-                          ${slide.buttonVariant === 'primary' ? 'bg-amber-600 hover:bg-amber-700 text-white' : ''}
-                          ${slide.buttonVariant === 'secondary' ? 'bg-white hover:bg-gray-100 text-gray-900' : ''}
-                          ${slide.buttonVariant === 'outline' ? 'border-2 border-white hover:bg-white/10 text-white' : ''}
+                          ${
+                            slide.buttonVariant === "primary"
+                              ? "bg-amber-600 hover:bg-amber-700 text-white"
+                              : ""
+                          }
+                          ${
+                            slide.buttonVariant === "secondary"
+                              ? "bg-white hover:bg-gray-100 text-gray-900"
+                              : ""
+                          }
+                          ${
+                            slide.buttonVariant === "outline"
+                              ? "border-2 border-white hover:bg-white/10 text-white"
+                              : ""
+                          }
                           font-medium py-3 px-8 rounded-md transition-all duration-300 flex items-center gap-2
                         `}
                         aria-label={`${slide.cta} - ${slide.title}`}
@@ -210,11 +255,11 @@ const EcommerceBannerSlider = () => {
               </div>
             ) : (
               <div className="relative w-full h-full">
-                <video 
+                <video
                   ref={videoRef}
-                  autoPlay 
-                  loop 
-                  muted 
+                  autoPlay
+                  loop
+                  muted
                   playsInline
                   className="w-full h-full object-cover object-center"
                   aria-label={slide.alt}
@@ -222,8 +267,24 @@ const EcommerceBannerSlider = () => {
                   <source src={slide.content} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-                <div className={`absolute inset-0 bg-black/30 flex items-center ${slide.textPosition === 'left' ? 'justify-start' : slide.textPosition === 'right' ? 'justify-end' : 'justify-center'}`}>
-                  <div className={`px-6 md:px-12 lg:px-24 max-w-2xl ${slide.textPosition === 'left' ? 'text-left' : slide.textPosition === 'right' ? 'text-right' : 'text-center'}`}>
+                <div
+                  className={`absolute inset-0 bg-black/30 flex items-center ${
+                    slide.textPosition === "left"
+                      ? "justify-start"
+                      : slide.textPosition === "right"
+                      ? "justify-end"
+                      : "justify-center"
+                  }`}
+                >
+                  <div
+                    className={`px-6 md:px-12 lg:px-24 max-w-2xl ${
+                      slide.textPosition === "left"
+                        ? "text-left"
+                        : slide.textPosition === "right"
+                        ? "text-right"
+                        : "text-center"
+                    }`}
+                  >
                     {slide.subtitle && (
                       <p className="text-lg md:text-xl text-amber-400 mb-2 animate-fadeInUp uppercase tracking-wider font-medium">
                         {slide.subtitle}
@@ -236,11 +297,23 @@ const EcommerceBannerSlider = () => {
                       {slide.description}
                     </p>
                     <div className="animate-fadeInUp delay-300">
-                      <button 
+                      <button
                         className={`
-                          ${slide.buttonVariant === 'primary' ? 'bg-amber-600 hover:bg-amber-700 text-white' : ''}
-                          ${slide.buttonVariant === 'secondary' ? 'bg-white hover:bg-gray-100 text-gray-900' : ''}
-                          ${slide.buttonVariant === 'outline' ? 'border-2 border-white hover:bg-white/10 text-white' : ''}
+                          ${
+                            slide.buttonVariant === "primary"
+                              ? "bg-amber-600 hover:bg-amber-700 text-white"
+                              : ""
+                          }
+                          ${
+                            slide.buttonVariant === "secondary"
+                              ? "bg-white hover:bg-gray-100 text-gray-900"
+                              : ""
+                          }
+                          ${
+                            slide.buttonVariant === "outline"
+                              ? "border-2 border-white hover:bg-white/10 text-white"
+                              : ""
+                          }
                           font-medium py-3 px-8 rounded-md transition-all duration-300 flex items-center gap-2
                         `}
                         aria-label={`${slide.cta} - ${slide.title}`}
@@ -257,14 +330,14 @@ const EcommerceBannerSlider = () => {
 
         {/* Navigation Controls */}
         <div className="absolute inset-0 flex items-center justify-between px-4 z-10">
-          <button 
+          <button
             onClick={prevSlide}
             className="bg-white/30 hover:bg-white/50 rounded-full p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white"
             aria-label="Previous slide"
           >
             <FaChevronLeft className="text-white text-xl" />
           </button>
-          <button 
+          <button
             onClick={nextSlide}
             className="bg-white/30 hover:bg-white/50 rounded-full p-3 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white"
             aria-label="Next slide"
@@ -279,7 +352,11 @@ const EcommerceBannerSlider = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-amber-500 w-6' : 'bg-white/50 hover:bg-white/75'}`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "bg-amber-500 w-6"
+                  : "bg-white/50 hover:bg-white/75"
+              }`}
               aria-label={`Go to slide ${index + 1} of ${slides.length}`}
               aria-current={index === currentSlide}
             />
@@ -317,7 +394,8 @@ const EcommerceBannerSlider = () => {
           animation-delay: 0.6s;
         }
         @keyframes pulse {
-          0%, 100% {
+          0%,
+          100% {
             transform: scale(1);
           }
           50% {
