@@ -1,0 +1,56 @@
+/* Base styles (Mobile First) */
+body {
+  font-size: 16px;
+  padding: 16px;
+  margin: 0;
+  background: #fff;
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Larger phones / Small tablets */
+@media (min-width: 481px) and (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+/* Tablets / iPads / Landscape phones */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* MacBook Air 13" (Default 2560x1600, scaled down) */
+@media (min-width: 1280px) and (max-width: 1440px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+/* MacBook Air 15" or MacBook Pro 14" */
+@media (min-width: 1441px) and (max-width: 1728px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* MacBook Pro 16" and similar large laptops */
+@media (min-width: 1729px) and (max-width: 1920px) {
+  body {
+    font-size: 18.5px;
+  }
+}
+
+/* Very large desktops or retina displays */
+@media (min-width: 1921px) {
+  body {
+    font-size: 19px;
+  }
+}

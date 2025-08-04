@@ -2,7 +2,7 @@ import React from 'react';
 
 const WatchForm = () => {
   return (
-    <div className="flex flex-col lg:flex-row bg-gray-50 min-h-screen justify-center items-center px-4 py-10 lg:py-20 gap-8 lg:gap-16">
+    <div className="flex flex-col lg:flex-row bg-gray-100 min-h-screen justify-center items-center px-4 py-10 lg:py-20 gap-8 lg:gap-16">
       {/* Form Section */}
       <div className="bg-white rounded-xl shadow-xl w-full max-w-xl p-6 lg:p-8 border-t-8 border-blue-900">
         <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6 text-gray-900">TELL US ABOUT YOUR WATCH</h2>

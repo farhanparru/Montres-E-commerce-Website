@@ -82,7 +82,7 @@ const WatchBrand = () => {
       price: 900.00,
       oldPrice: 1050.00,
       currency: "AED",
-      image:WatchBrandIm,
+      image:WatchBrandIm  ,
       rating: 4.4,
       reviewCount: 92,
       brand: "Sello",
