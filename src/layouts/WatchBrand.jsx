@@ -4,7 +4,7 @@ import { FaShoppingBag, FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa'
 import WatchBrandIm from '../assets/Watche/rendering-smart-home-device.jpg'
 
 const WatchBrand = () => {
-  // Sample watch data - replace with your actual data source
+  // Sample watch data
   const brandWatches = [
     {
       id: 1,
@@ -18,7 +18,8 @@ const WatchBrand = () => {
       brand: "Sello",
       features: ["Water resistant", "Chronograph", "Stainless steel"],
       delivery: "Free delivery in UAE",
-      warranty: "2 Years UAE Warranty"
+      warranty: "2 Years UAE Warranty",
+      isNew: true
     },
     {
       id: 2,
@@ -32,7 +33,8 @@ const WatchBrand = () => {
       brand: "Sello",
       features: ["Luminous hands", "120m water resistant", "Sapphire crystal"],
       delivery: "Free delivery in UAE",
-      warranty: "2 Years UAE Warranty"
+      warranty: "2 Years UAE Warranty",
+      isNew: false
     },
     {
       id: 3,
@@ -46,7 +48,8 @@ const WatchBrand = () => {
       brand: "Sello",
       features: ["Automatic movement", "Leather strap", "Date display"],
       delivery: "Free delivery in UAE",
-      warranty: "2 Years UAE Warranty"
+      warranty: "2 Years UAE Warranty",
+      isNew: true
     },
     {
       id: 4,
@@ -54,13 +57,15 @@ const WatchBrand = () => {
       price: 1200.00,
       oldPrice: 1500.00,
       currency: "AED",
-      image:WatchBrandIm,
+      image: WatchBrandIm,
       rating: 4.8,
       reviewCount: 342,
       brand: "Sello",
       features: ["Limited edition", "Automatic", "42mm case"],
       delivery: "Free delivery in UAE",
-      warranty: "2 Years UAE Warranty"
+      warranty: "2 Years UAE Warranty",
+      isNew: false,
+      isBestseller: true
     },
     {
       id: 5,
@@ -74,7 +79,8 @@ const WatchBrand = () => {
       brand: "Sello",
       features: ["300m water resistant", "Rotating bezel", "Rubber strap"],
       delivery: "Free delivery in UAE",
-      warranty: "2 Years UAE Warranty"
+      warranty: "2 Years UAE Warranty",
+      isNew: false
     },
     {
       id: 6,
@@ -82,13 +88,15 @@ const WatchBrand = () => {
       price: 900.00,
       oldPrice: 1050.00,
       currency: "AED",
-      image:WatchBrandIm  ,
+      image: WatchBrandIm,
       rating: 4.4,
       reviewCount: 92,
       brand: "Sello",
       features: ["40mm case", "Exhibition caseback", "20ATM"],
       delivery: "Free delivery in UAE",
-      warranty: "2 Years UAE Warranty"
+      warranty: "2 Years UAE Warranty",
+      isNew: true,
+      isLimited: true
     }
   ];
 
@@ -111,6 +119,25 @@ const WatchBrand = () => {
     return stars;
   };
 
+  // Badge component
+  const Badge = ({ type, children }) => {
+    const baseClasses = "text-xs font-bold px-2 py-1 rounded-md shadow-sm";
+    
+    const typeClasses = {
+      sale: "bg-red-600 text-white",
+      discount: "bg-blue-600 text-white",
+      new: "bg-green-600 text-white",
+      bestseller: "bg-purple-600 text-white",
+      limited: "bg-yellow-500 text-gray-900"
+    };
+    
+    return (
+      <div className={`${baseClasses} ${typeClasses[type]} flex items-center justify-center`}>
+        {children}
+      </div>
+    );
+  };
+
   return (
     <>
       <Head>
@@ -129,7 +156,30 @@ const WatchBrand = () => {
         {/* Brand Watches Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {brandWatches.map((watch) => (
-            <div key={watch.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+            <div key={watch.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 relative">
+              {/* Badges Container - Top Left */}
+              <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
+                {watch.isNew && (
+                  <Badge type="new">NEW ARRIVAL</Badge>
+                )}
+                {watch.isBestseller && (
+                  <Badge type="bestseller">BESTSELLER</Badge>
+                )}
+                {watch.isLimited && (
+                  <Badge type="limited">LIMITED EDITION</Badge>
+                )}
+              </div>
+
+              {/* Discount Badges - Top Right */}
+              {watch.oldPrice && (
+                <div className="absolute top-2 right-2 flex flex-col gap-1 z-10">
+                  <Badge type="sale">SALE</Badge>
+                  <Badge type="discount">
+                    {Math.round((1 - watch.price/watch.oldPrice) * 100)}% OFF
+                  </Badge>
+                </div>
+              )}
+
               {/* Watch Image */}
               <div className="relative h-64 bg-gray-50">
                 <img 
@@ -138,11 +188,6 @@ const WatchBrand = () => {
                   className="absolute h-full w-full object-contain p-4"
                   loading="lazy"
                 />
-                {watch.oldPrice && (
-                  <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">
-                    SAVE {Math.round((1 - watch.price/watch.oldPrice) * 100)}%
-                  </div>
-                )}
               </div>
 
               {/* Watch Details */}
@@ -210,40 +255,6 @@ const WatchBrand = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Brand Authenticity Section */}
-        <div className="mt-16 bg-blue-50 p-8 rounded-lg">
-          <h2 className="text-2xl font-bold mb-6 text-blue-900 text-center">Why Choose Sello Brand Watches?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-sm">
-                <svg className="w-8 h-8 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="font-bold mb-2">100% Authentic</h3>
-              <p className="text-gray-600">Direct from manufacturer with original packaging and papers</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-sm">
-                <svg className="w-8 h-8 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="font-bold mb-2">UAE Warranty</h3>
-              <p className="text-gray-600">Official 2-year warranty valid across all Emirates</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-sm">
-                <svg className="w-8 h-8 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="font-bold mb-2">Best Price Guarantee</h3>
-              <p className="text-gray-600">We'll match any lower price from authorized dealers</p>
-            </div>
-          </div>
         </div>
       </div>
     </>

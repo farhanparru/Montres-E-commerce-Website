@@ -12,11 +12,7 @@ import {
   FaGlobe,
   FaCommentAlt,
 } from "react-icons/fa";
-import { 
-  FaComments, 
-  FaEnvelope, 
-  FaQuestionCircle 
-} from 'react-icons/fa';
+import { FaComments, FaEnvelope, FaQuestionCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../assets/montreslogo.png";
 
@@ -42,18 +38,19 @@ const Navbar = () => {
   return (
     <>
       {/* Top Announcement Bar - SEO optimized with structured data */}
-      <div 
+      <div
         className="bg-[#1e518e] text-white text-sm py-2 px-4 text-center"
         itemScope
         itemType="https://schema.org/Offer"
       >
         <span itemProp="description">
-          Free shipping on orders over AED 500 | Dubai's premier watch destination
+          Free shipping on orders over AED 500 | Dubai's premier watch
+          destination
         </span>
       </div>
 
       {/* Main Navigation - Semantic HTML with ARIA labels */}
-      <header 
+      <header
         className={`w-full bg-white sticky top-0 z-50 transition-all duration-300 ${
           scrolled ? "shadow-lg" : "shadow-md"
         }`}
@@ -61,7 +58,11 @@ const Navbar = () => {
       >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
           {/* Logo with proper alt text and structured data */}
-          <Link to="/" className="flex items-center space-x-2" aria-label="Montres Home">
+          <Link
+            to="/"
+            className="flex items-center space-x-2"
+            aria-label="Montres Home"
+          >
             <img
               src={logo}
               alt="Montres - Luxury Watches Dubai"
@@ -74,19 +75,30 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <nav 
-            className="hidden md:flex items-center gap-8 text-gray-700"
+          <nav
+            className="hidden md:flex items-center gap-6 text-gray-700"
             aria-label="Main navigation"
           >
             <NavItem icon={<FaClipboardList />} label="Orders" to="/orders" />
-            <NavItem
-              icon={<FaShoppingCart />}
-              label="Cart"
-              to="/cart"
-              badge={3}
-            />
+
+            {/* Enhanced Cart Icon with Badge */}
+            <div className="relative">
+              <Link
+                to="/cart"
+                className="flex items-center justify-center p-3 rounded-full bg-gradient-to-br from-[#d4af37] to-[#f1e5ac] text-gray-800 hover:from-[#c19b2e] hover:to-[#e0d294] transition-all shadow-md hover:shadow-lg"
+                aria-label="Shopping cart"
+              >
+                <FaShoppingCart className="text-2xl" />
+              </Link>
+              {/* Cart badge - replace '3' with your actual cart item count */}
+
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center shadow-md border-2 border-white">
+                {3}
+              </span>
+            </div>
+
             <Link
-              to="/signin"
+              to="/register"
               className="ml-2 bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] hover:from-[#1a457a] hover:to-[#00559f] text-white px-6 py-2.5 rounded-full flex items-center gap-2 text-base transition-all shadow-md hover:shadow-lg"
               aria-label="Sign in or register"
             >
@@ -96,11 +108,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center gap-4">
-            <Link 
-              to="/cart" 
-              className="relative"
-              aria-label="Shopping cart"
-            >
+            <Link to="/cart" className="relative" aria-label="Shopping cart">
               <FaShoppingCart size={20} className="text-gray-700" />
               <span className="absolute -top-2 -right-2 bg-[#1e518e] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                 3
@@ -119,7 +127,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <nav 
+          <nav
             className="md:hidden bg-white px-4 py-4 border-t border-gray-200 space-y-4 animate-slideDown"
             aria-label="Mobile navigation"
           >
@@ -134,9 +142,9 @@ const Navbar = () => {
               to="/cart"
               badge={3}
             />
-            
+
             {/* Mobile Help Dropdown */}
-            <MobileDropdown 
+            <MobileDropdown
               icon={<FaPhone className="text-[#1e518e]" />}
               label="Help & Support"
               items={[
@@ -145,32 +153,32 @@ const Navbar = () => {
                   label: "Call Support",
                   sublabel: "+971 1234 5678",
                   to: "tel:+97112345678",
-                  ariaLabel: "Call customer support"
+                  ariaLabel: "Call customer support",
                 },
                 {
                   icon: <FaEnvelope className="text-[#1e518e]" />,
                   label: "Contact Form",
                   to: "/contact",
-                  ariaLabel: "Contact form"
+                  ariaLabel: "Contact form",
                 },
                 {
                   icon: <FaComments className="text-[#1e518e]" />,
                   label: "Live Chat",
                   sublabel: "24/7 Available",
                   to: "/live-chat",
-                  ariaLabel: "Start live chat"
+                  ariaLabel: "Start live chat",
                 },
                 {
                   icon: <FaQuestionCircle className="text-[#1e518e]" />,
                   label: "FAQs",
                   to: "/faq",
-                  ariaLabel: "Frequently asked questions"
-                }
+                  ariaLabel: "Frequently asked questions",
+                },
               ]}
             />
-            
+
             {/* Mobile Language Dropdown */}
-            <MobileDropdown 
+            <MobileDropdown
               icon={<FaGlobe className="text-[#1e518e]" />}
               label="Language"
               items={[
@@ -179,25 +187,25 @@ const Navbar = () => {
                   label: "English",
                   to: "#",
                   onClick: () => console.log("English selected"),
-                  ariaLabel: "Switch to English"
+                  ariaLabel: "Switch to English",
                 },
                 {
                   icon: "🇦🇪",
                   label: "العربية",
                   to: "#",
                   onClick: () => console.log("Arabic selected"),
-                  ariaLabel: "Switch to Arabic"
+                  ariaLabel: "Switch to Arabic",
                 },
                 {
                   icon: "🇮🇳",
                   label: "हिन्दी",
                   to: "#",
                   onClick: () => console.log("Hindi selected"),
-                  ariaLabel: "Switch to Hindi"
-                }
+                  ariaLabel: "Switch to Hindi",
+                },
               ]}
             />
-            
+
             <Link
               to="/signin"
               className="block bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] hover:from-[#1a457a] hover:to-[#00559f] text-white px-4 py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-md"
@@ -225,13 +233,13 @@ const MobileDropdown = ({ icon, label, items }) => {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between w-full py-3 px-2 rounded-lg hover:bg-gray-50 transition-all"
         aria-expanded={isOpen}
-        aria-controls={`mobile-dropdown-${label.replace(/\s+/g, '-').toLowerCase()}`}
+        aria-controls={`mobile-dropdown-${label
+          .replace(/\s+/g, "-")
+          .toLowerCase()}`}
         aria-label={`${label} dropdown`}
       >
         <div className="flex items-center gap-4">
-          <div className="text-xl">
-            {icon}
-          </div>
+          <div className="text-xl">{icon}</div>
           <span className="text-sm font-medium text-gray-700">{label}</span>
         </div>
         <FaChevronDown
@@ -240,10 +248,10 @@ const MobileDropdown = ({ icon, label, items }) => {
           }`}
         />
       </button>
-      
+
       {isOpen && (
-        <div 
-          id={`mobile-dropdown-${label.replace(/\s+/g, '-').toLowerCase()}`}
+        <div
+          id={`mobile-dropdown-${label.replace(/\s+/g, "-").toLowerCase()}`}
           className="ml-12 mt-1 space-y-2 border-l-2 border-gray-100 pl-4"
           role="menu"
         >
@@ -261,11 +269,11 @@ const MobileDropdown = ({ icon, label, items }) => {
               role="menuitem"
               aria-label={item.ariaLabel || item.label}
             >
-              <div className="text-lg w-6 text-center">
-                {item.icon}
-              </div>
+              <div className="text-lg w-6 text-center">{item.icon}</div>
               <div>
-                <div className="text-sm font-medium text-gray-700">{item.label}</div>
+                <div className="text-sm font-medium text-gray-700">
+                  {item.label}
+                </div>
                 {item.sublabel && (
                   <div className="text-xs text-gray-500">{item.sublabel}</div>
                 )}
@@ -369,7 +377,7 @@ const SubNavbar = () => {
           </button>
 
           {isCategoryOpen && (
-            <div 
+            <div
               id="categories-menu"
               className="absolute z-20 mt-2 w-full md:w-72 bg-white shadow-xl rounded-lg py-2 border border-gray-100"
               role="menu"
@@ -379,13 +387,17 @@ const SubNavbar = () => {
                   key={category.name}
                   to={category.path}
                   className={`flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50 ${
-                    category.sale ? "text-red-500 font-semibold" : "text-gray-700"
+                    category.sale
+                      ? "text-red-500 font-semibold"
+                      : "text-gray-700"
                   }`}
                   onClick={() => setIsCategoryOpen(false)}
                   role="menuitem"
                   aria-label={category.name}
                 >
-                  <span className="text-lg" aria-hidden="true">{category.icon}</span>
+                  <span className="text-lg" aria-hidden="true">
+                    {category.icon}
+                  </span>
                   <span>{category.name}</span>
                   {category.sale && (
                     <span className="ml-auto bg-red-100 text-red-600 text-xs px-2 py-1 rounded">
@@ -400,11 +412,11 @@ const SubNavbar = () => {
 
         {/* Search Input - Enhanced with SEO and accessibility */}
         <div className="relative flex w-full max-w-2xl">
-          <div 
+          <div
             className="flex w-full border border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm focus-within:ring-2 focus-within:ring-[#1e518e] focus-within:border-transparent transition-all"
             role="search"
           >
-            <select 
+            <select
               className="border-r px-3 text-sm text-gray-700 font-medium outline-none bg-gray-50 hidden md:block w-40"
               aria-label="Search category filter"
             >
@@ -428,7 +440,7 @@ const SubNavbar = () => {
               onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
               aria-label="Search products"
             />
-            <button 
+            <button
               className="bg-gradient-to-r from-[#1e518e] to-[#0061b0ee] text-white px-5 flex items-center justify-center gap-2 hover:from-[#1a457a] hover:to-[#00559f] transition-all"
               aria-label="Submit search"
             >
@@ -438,8 +450,8 @@ const SubNavbar = () => {
           </div>
 
           {/* Search suggestions dropdown */}
-          {(searchQuery && isSearchFocused) && (
-            <div 
+          {searchQuery && isSearchFocused && (
+            <div
               className="absolute top-full mt-1 w-full bg-white shadow-lg rounded-lg py-2 z-30 border border-gray-200"
               role="listbox"
             >
@@ -473,7 +485,9 @@ const SubNavbar = () => {
               aria-controls="help-menu"
             >
               <FaPhone className="text-[#1e518e] text-sm group-hover:text-[#1a457a]" />
-              <span className="text-sm font-medium text-gray-700 group-hover:text-[#1e518e]">Support</span>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-[#1e518e]">
+                Support
+              </span>
               <FaChevronDown
                 className={`text-xs text-gray-500 transition-transform ${
                   isHelpOpen ? "rotate-180" : ""
@@ -482,7 +496,7 @@ const SubNavbar = () => {
             </button>
 
             {isHelpOpen && (
-              <div 
+              <div
                 id="help-menu"
                 className="absolute right-0 mt-1 w-52 bg-white shadow-lg rounded-lg py-2 z-20 border border-gray-100"
                 role="menu"
@@ -530,7 +544,7 @@ const SubNavbar = () => {
               </div>
             )}
           </div>
-          
+
           {/* Language Dropdown */}
           <div className="relative hidden md:block">
             <button
@@ -550,7 +564,7 @@ const SubNavbar = () => {
             </button>
 
             {isLanguageOpen && (
-              <div 
+              <div
                 id="language-menu"
                 className="absolute right-0 mt-1 w-40 bg-white shadow-lg rounded-lg py-2 z-20 border border-gray-100"
                 role="menu"
@@ -561,7 +575,9 @@ const SubNavbar = () => {
                   role="menuitem"
                   lang="en"
                 >
-                  <span className="w-6 text-center" aria-hidden="true">🇬🇧</span>
+                  <span className="w-6 text-center" aria-hidden="true">
+                    🇬🇧
+                  </span>
                   English
                 </button>
                 <button
@@ -570,7 +586,9 @@ const SubNavbar = () => {
                   role="menuitem"
                   lang="ar"
                 >
-                  <span className="w-6 text-center" aria-hidden="true">🇦🇪</span>
+                  <span className="w-6 text-center" aria-hidden="true">
+                    🇦🇪
+                  </span>
                   العربية
                 </button>
                 <button
@@ -579,7 +597,9 @@ const SubNavbar = () => {
                   role="menuitem"
                   lang="hi"
                 >
-                  <span className="w-6 text-center" aria-hidden="true">🇮🇳</span>
+                  <span className="w-6 text-center" aria-hidden="true">
+                    🇮🇳
+                  </span>
                   हिन्दी
                 </button>
               </div>

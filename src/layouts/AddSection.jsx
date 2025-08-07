@@ -1,22 +1,24 @@
-import React from 'react'
-import megaOffer from '../assets/cbc5227b-6dc5-4903-a781-9e73357d7d1f.jpg'
-import WatchOffer from '../assets/black_friday_banner_18.jpg'
+import React from 'react';
+import megaOffer from '../assets/cbc5227b-6dc5-4903-a781-9e73357d7d1f.jpg';
+import WatchOffer from '../assets/black_friday_banner_18.jpg';
 
 const AddSection = () => {
   return (
-    <div className="bg-gray-100"> {/* Added background color here */}
+    <div className="bg-gray-100">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
           {/* First Image Section */}
-          <div className="relative rounded-xl overflow-hidden group h-80">
+          <div className="relative rounded-xl overflow-hidden h-80 group"> {/* `group` MUST be here */}
             <img 
               src={megaOffer}
               alt="Special offers"
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            {/* Animated Title Container */}
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div className="text-center transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 px-4">
+            
+            {/* Overlay (Animated Title Container) */}
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+              <div className="text-center transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 ease-in-out px-4">
                 <h2 className="text-4xl font-bold text-white mb-2">
                   <span className="text-amber-400">DUBAI</span> DEALS
                 </h2>
@@ -29,15 +31,16 @@ const AddSection = () => {
           </div>
 
           {/* Second Image Section */}
-          <div className="relative rounded-xl overflow-hidden group h-80">
+          <div className="relative rounded-xl overflow-hidden h-80 group"> {/* `group` MUST be here */}
             <img 
               src={WatchOffer}
               alt="Watch offers"
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            {/* Animated Title Container */}
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div className="text-center transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 px-4">
+            
+            {/* Overlay (Animated Title Container) */}
+            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-gray-900/80 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+              <div className="text-center transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 ease-in-out px-4">
                 <h2 className="text-4xl font-bold text-white mb-2">
                   <span className="text-amber-400">ABU DHABI</span> COLLECTION
                 </h2>
@@ -51,7 +54,7 @@ const AddSection = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AddSection
+export default AddSection;

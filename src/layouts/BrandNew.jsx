@@ -132,7 +132,7 @@ const BrandNew = () => {
                 </div>
                 
                 {/* CTA Button */}
-                <button className="mt-6 w-full bg-gray-900 hover:bg-amber-600 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300">
+                <button className="mt-6 w-full bg-blue-900 hover:bg-blue-800 text-white py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors duration-300">
                   <FaShoppingBag /> Get Price
                 </button>
               </div>

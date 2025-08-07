@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaChevronLeft, FaChevronRight, FaShoppingBag } from "react-icons/fa";
-import videoWatch from "../../assets/11965317-uhd_3840_2160_24fps.mp4";
+import { FaChevronLeft, FaChevronRight} from "react-icons/fa";
+import videoWatch from "../../assets/6994619-uhd_3840_2160_30fps.mp4";
+import BigSales from '../../assets/8005340.jpg'
+import BigShpping from '../../assets/5544257.jpg'
+import shoppingStore from '../../assets/cyber-monday-shopping-sales.jpg'
 import Helmet from "react-helmet";
 const EcommerceBannerSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,7 +15,7 @@ const EcommerceBannerSlider = () => {
   const slides = [
     {
       type: "image",
-      content: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a",
+      content: BigSales,
       alt: "Luxury watches collection with discount offer",
       title: "Summer Sale 2023",
       subtitle: "Up to 40% Off Premium Watches",
@@ -21,49 +24,50 @@ const EcommerceBannerSlider = () => {
       cta: "Shop Now",
       buttonVariant: "primary",
       textPosition: "left",
-      schema: {
-        "@type": "Offer",
-        name: "Summer Sale 2023",
-        description: "Limited time 40% discount on luxury watches",
-        priceCurrency: "USD",
-        url: "/summer-sale",
-      },
+     
     },
     {
       type: "video",
       content: videoWatch,
       alt: "3D animation of premium chronograph watch",
-      title: "New Collection",
       subtitle: "Exclusive Timepieces",
       description:
         "Discover our latest designs with cutting-edge technology and craftsmanship.",
       cta: "View Collection",
       buttonVariant: "secondary",
       textPosition: "center",
-      schema: {
-        "@type": "ProductCollection",
-        name: "New Watch Collection",
-        description: "Premium chronograph watches with advanced features",
-      },
+ 
     },
     {
       type: "image",
-      content: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49",
+      content:BigShpping,
       alt: "Close-up of luxury wristwatch with leather strap",
       title: "Free Shipping",
-      subtitle: "On All Orders Over $500",
+      subtitle: "On All Orders Over AED500",
       description:
         "Enjoy complimentary worldwide shipping and easy returns on premium purchases.",
-      cta: "Learn More",
+
       buttonVariant: "outline",
-      textPosition: "right",
-      schema: {
-        "@type": "ShippingDeliveryTime",
-        name: "Free Shipping Offer",
-        description: "Free shipping on orders over $500",
-      },
+      textPosition: "left",
+      
+    },
+
+      {
+      type: "image",
+      content:shoppingStore,
+      alt: "Close-up of luxury wristwatch with leather strap",
+      title: "Free Shipping",
+      subtitle: "On All Orders Over AED500",
+      description:
+        "Enjoy complimentary worldwide shipping and easy returns on premium purchases.",
+
+      buttonVariant: "outline",
+      textPosition: "left",
+      
     },
   ];
+
+  
 
   // Handle slide transitions
   const goToSlide = (index) => {
@@ -226,29 +230,7 @@ const EcommerceBannerSlider = () => {
                       {slide.description}
                     </p>
                     <div className="animate-fadeInUp delay-300">
-                      <button
-                        className={`
-                          ${
-                            slide.buttonVariant === "primary"
-                              ? "bg-amber-600 hover:bg-amber-700 text-white"
-                              : ""
-                          }
-                          ${
-                            slide.buttonVariant === "secondary"
-                              ? "bg-white hover:bg-gray-100 text-gray-900"
-                              : ""
-                          }
-                          ${
-                            slide.buttonVariant === "outline"
-                              ? "border-2 border-white hover:bg-white/10 text-white"
-                              : ""
-                          }
-                          font-medium py-3 px-8 rounded-md transition-all duration-300 flex items-center gap-2
-                        `}
-                        aria-label={`${slide.cta} - ${slide.title}`}
-                      >
-                        {slide.cta} <FaShoppingBag />
-                      </button>
+                   
                     </div>
                   </div>
                 </div>
@@ -297,29 +279,7 @@ const EcommerceBannerSlider = () => {
                       {slide.description}
                     </p>
                     <div className="animate-fadeInUp delay-300">
-                      <button
-                        className={`
-                          ${
-                            slide.buttonVariant === "primary"
-                              ? "bg-amber-600 hover:bg-amber-700 text-white"
-                              : ""
-                          }
-                          ${
-                            slide.buttonVariant === "secondary"
-                              ? "bg-white hover:bg-gray-100 text-gray-900"
-                              : ""
-                          }
-                          ${
-                            slide.buttonVariant === "outline"
-                              ? "border-2 border-white hover:bg-white/10 text-white"
-                              : ""
-                          }
-                          font-medium py-3 px-8 rounded-md transition-all duration-300 flex items-center gap-2
-                        `}
-                        aria-label={`${slide.cta} - ${slide.title}`}
-                      >
-                        {slide.cta} <FaShoppingBag />
-                      </button>
+                   
                     </div>
                   </div>
                 </div>
@@ -363,10 +323,7 @@ const EcommerceBannerSlider = () => {
           ))}
         </div>
 
-        {/* Promo Badge with Animation */}
-        <div className="absolute top-4 left-4 z-20 bg-amber-500 text-white px-4 py-2 rounded-full shadow-lg animate-pulse">
-          <span className="font-medium text-sm">Limited Time Offer</span>
-        </div>
+      
       </section>
 
       {/* CSS Animations */}
