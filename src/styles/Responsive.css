@@ -1,56 +1,39 @@
 /* Base styles (Mobile First) */
 body {
-  font-size: 16px;
-  padding: 16px;
+  font-size: 1rem; /* 16px default */
+  padding: 1rem;
   margin: 0;
   background: #fff;
 }
 
-/* Small phones */
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
+/* Small phones (~480px) */
+@media (max-width: 30em) { /* 480px if 1em = 16px */
+  body { font-size: 0.875rem; } /* 14px */
 }
 
 /* Larger phones / Small tablets */
-@media (min-width: 481px) and (max-width: 767px) {
-  body {
-    font-size: 15px;
-  }
+@media (min-width: 30.063em) and (max-width: 47.938em) { /* 481px–767px */
+  body { font-size: 0.9375rem; } /* 15px */
 }
 
 /* Tablets / iPads / Landscape phones */
-@media (min-width: 768px) and (max-width: 1024px) {
-  body {
-    font-size: 16px;
-  }
+@media (min-width: 48em) and (max-width: 64em) { /* 768px–1024px */
+  body { font-size: 1rem; } /* 16px */
 }
 
-/* MacBook Air 13" (Default 2560x1600, scaled down) */
-@media (min-width: 1280px) and (max-width: 1440px) {
-  body {
-    font-size: 17px;
-  }
+/* Medium laptops / desktops */
+@media (min-width: 64.063em) and (max-width: 80em) { /* 1025px–1280px */
+  body { font-size: 1.0625rem; } /* 17px */
 }
 
-/* MacBook Air 15" or MacBook Pro 14" */
-@media (min-width: 1441px) and (max-width: 1728px) {
-  body {
-    font-size: 18px;
-  }
+/* Large laptops / desktops */
+@media (min-width: 80.063em) and (max-width: 96em) { /* 1281px–1536px */
+  body { font-size: 1.125rem; } /* 18px */
 }
 
-/* MacBook Pro 16" and similar large laptops */
-@media (min-width: 1729px) and (max-width: 1920px) {
-  body {
-    font-size: 18.5px;
-  }
+/* Very large desktops */
+@media (min-width: 96.063em) {
+  body { font-size: 1.1875rem; } /* 19px */
 }
 
-/* Very large desktops or retina displays */
-@media (min-width: 1921px) {
-  body {
-    font-size: 19px;
-  }
-}
+

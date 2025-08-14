@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 import Navbar from "./components/shared/Navbar";
 import Landing from "./components/shared/Landing";
 import Listings from "./features/product/Listings";
@@ -10,45 +10,51 @@ import WatchBrand from "./layouts/WatchBrand";
 import AddSection from "./layouts/AddSection";
 import PremiumBrands from "./layouts/PremiumBrands";
 import Register from "./features/auth/Registerpage";
-import LoginPage from "./features/auth/LoginPage";
 import CustomerReviews from "./components/ui/CustomerReviews";
 import Footer from "./components/shared/Footer";
 import JustforyouWatch from "./components/ui/JustforyouWatch";
 import ItemCart from "./features/cart/ItemCart";
+import ProductPage from "../src/features/product/WatchProductPage";
+import Services from "./components/ui/Services";
+import "../src/styles/responsive.css";
+import Blog from "./layouts/Blog";
+import Wishlist from "./components/ui/Wishlist";
 
 function App() {
-  const location = useLocation();
-  const hideNavbarPaths = ["/register", "/login"];
-  const showNavbar = !hideNavbarPaths.includes(location.pathname.toLowerCase());
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <div>
-      {showNavbar && <Navbar />}
+      <Navbar onSignUpClick={() => setModalIsOpen(true)} />
+      <Register
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+      />
       <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<LoginPage />} />
         <Route
           path="/"
           element={
             <>
               <Landing />
+              <Services />
               <Listings />
+              <PremiumBrands />
               <AddSection />
               <BrandNew />
               <Form />
-              <ChatRobot />
+              {/* <ChatRobot /> */}
               <WatchBrand />
-              <PremiumBrands />
               <JustforyouWatch />
+              <Blog />
               <CustomerReviews />
-             
             </>
           }
         />
         <Route path="/cart" element={<ItemCart />} />
-        
+        <Route path="/wishlist" element={<Wishlist/>}/>
+        <Route path="/watches/luxury" element={<ProductPage />} />
       </Routes>
-       <Footer />
+      <Footer />
     </div>
   );
 }
