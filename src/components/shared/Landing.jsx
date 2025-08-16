@@ -5,6 +5,7 @@ import BigShpping from '../../assets/5544257.jpg';
 import shoppingStore from '../../assets/cyber-monday-shopping-sales.jpg';
 import EcommsersePocket from '../../assets/E-Commerce Facebook Ad.png'
 import Helmet from "react-helmet";
+import SubscriptionModal from "../ui/SubscriptionForm";
 
 const EcommerceBannerSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -375,6 +376,7 @@ const EcommerceBannerSlider = () => {
             />
           ))}
         </div>
+          <SubscriptionModal triggerType="timer" delay={8000} />
       </section>
 
       <style jsx global>{`

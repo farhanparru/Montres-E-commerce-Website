@@ -5,6 +5,8 @@ import PayPal from '../../assets/images (2).png';
 import Mastercard from '../../assets/mastercard-icon-lg.png';
 import Visa from '../../assets/visa-logo-visa-icon-free-free-vector.jpg';
 import Head from "next/head";
+import watch from '../../assets/Watche/rendering-smart-home-device (1).jpg'
+import cufflinks from '../../assets/Cufflinks/closeup-photo-stud-white-shirt-with-red-tie.jpg'
 
 const DUMMY_ITEMS = [
   { 
@@ -13,7 +15,7 @@ const DUMMY_ITEMS = [
     price: 199.00, 
     originalPrice: 249.00,
     qty: 1, 
-    img: "https://images.unsplash.com/photo-1608889825103-eb5a6f5ad50a?w=200&h=200&fit=crop", 
+    img:watch, 
     category: "PS5",
     inStock: true,
     deliveryEstimate: "1-3 business days"
@@ -23,7 +25,7 @@ const DUMMY_ITEMS = [
     name: "PlayStation 5 Console", 
     price: 2199.00, 
     qty: 1, 
-    img: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=200&h=200&fit=crop", 
+    img: cufflinks, 
     category: "Console",
     inStock: true,
     deliveryEstimate: "3-5 business days"
@@ -62,137 +64,152 @@ const ShoppingCart = () => {
         <link rel="canonical" href="https://yourstore.com/cart" />
       </Head>
 
-      <div className="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Breadcrumbs */}
-          <nav className="flex mb-10" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-2 md:space-x-4">
-              <li className="inline-flex items-center">
-                <a href="/" className="inline-flex items-center text-sm font-medium text-gray-600 hover:text-purple-600 transition-colors">
-                  Home
-                </a>
-              </li>
-              <li>
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                  <span className="ml-2 text-sm font-medium text-gray-500">Shopping Cart</span>
-                </div>
-              </li>
-            </ol>
-          </nav>
+      <div className="min-h-screen bg-gray-50">
+        {/* Mobile Header - Sticky */}
+        <header className="bg-white shadow-sm sticky top-0 z-10 lg:static">
+          <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between">
+              <button className="lg:hidden text-gray-500 hover:text-gray-700">
+                <MdArrowBack className="h-6 w-6" />
+              </button>
+              <h1 className="text-xl font-bold text-gray-900 lg:text-3xl">Your Cart</h1>
+              <div className="lg:hidden"></div> {/* Spacer for alignment */}
+            </div>
+          </div>
+        </header>
 
-          <div className="flex flex-col lg:flex-row gap-10">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-8">
+          {/* Mobile Order Summary Bar - Sticky at bottom */}
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 z-10">
+            <div className="flex justify-between items-center">
+              <div>
+                <div className="text-sm text-gray-600">Total ({totalItems} items)</div>
+                <div className="text-lg font-bold">AED {total.toFixed(2)}</div>
+              </div>
+              <button className="bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg text-base font-semibold shadow-sm">
+                Checkout
+              </button>
+            </div>
+          </div>
+
+          <div className="lg:flex lg:gap-8">
             {/* Cart Items Section */}
             <div className="lg:w-2/3">
-              <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold text-gray-900">Your Cart</h1>
-                <a href="/shop" className="text-purple-600 hover:text-purple-800 flex items-center transition-colors">
-                  <MdArrowBack className="mr-2" /> Continue Shopping
+              {/* Cart Header */}
+              <div className="flex items-center justify-between my-6 lg:mb-6">
+                <div className="hidden lg:flex items-center">
+                  <span className="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center mr-2">
+                    {totalItems}
+                  </span>
+                  <h2 className="text-xl font-semibold text-gray-900">Items in your cart</h2>
+                </div>
+                <a href="/shop" className="hidden lg:flex text-purple-600 hover:text-purple-800 items-center text-sm">
+                  <MdArrowBack className="mr-1" /> Continue Shopping
                 </a>
               </div>
 
-              {/* Cart Summary */}
-              <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    {totalItems} {totalItems === 1 ? 'Item' : 'Items'}
-                  </h2>
-                  {totalSavings > 0 && (
-                    <span className="text-sm font-medium text-green-600">
-                      You save AED {totalSavings.toFixed(2)}
-                    </span>
-                  )}
+              {/* Savings Notice - Mobile Top */}
+              {totalSavings > 0 && (
+                <div className="lg:hidden bg-green-50 border border-green-200 rounded-lg p-3 flex items-center mb-4">
+                  <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                  <span className="text-green-700 text-sm">
+                    You save AED {totalSavings.toFixed(2)}
+                  </span>
                 </div>
-              </div>
+              )}
 
               {/* Cart Items */}
               <div className="bg-white rounded-xl shadow-sm divide-y divide-gray-200">
                 {DUMMY_ITEMS.map((item) => (
-                  <div key={item.id} className="p-6">
-                    <div className="flex flex-col md:flex-row gap-6">
-                      {/* Product Image */}
-                      <div className="flex-shrink-0">
+                  <div key={item.id} className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                      {/* Product Image - Centered on mobile */}
+                      <div className="flex justify-center sm:justify-start sm:flex-shrink-0">
                         <img
                           src={item.img}
                           alt={item.name}
-                          className="w-24 h-24 md:w-32 md:h-32 rounded-lg object-cover border border-gray-200"
+                          className="w-32 h-32 sm:w-24 sm:h-24 object-contain rounded-lg border border-gray-200"
                           loading="lazy"
-                          onError={(e) => {
-                            e.target.src = 'https://via.placeholder.com/128?text=Product';
-                          }}
                         />
                       </div>
 
                       {/* Product Details */}
                       <div className="flex-1">
-                        <div className="flex flex-col md:flex-row md:justify-between gap-4">
+                        <div className="flex flex-col h-full justify-between">
                           <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                              <a href={`/product/${item.id}`} className="hover:text-purple-600 transition-colors">
-                                {item.name}
-                              </a>
-                            </h3>
-                            <p className="text-sm text-gray-500 mb-2">{item.category}</p>
-                            {!item.inStock ? (
-                              <p className="text-sm text-red-500">{item.deliveryEstimate}</p>
-                            ) : (
-                              <p className="text-sm text-green-500">In Stock • {item.deliveryEstimate}</p>
-                            )}
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
+                                  {item.name}
+                                </h3>
+                                <p className="text-xs sm:text-sm text-gray-500 mb-1">{item.category}</p>
+                              </div>
+                              {/* Price on mobile - shown only for mobile */}
+                              <div className="sm:hidden text-right">
+                                {item.originalPrice && (
+                                  <span className="text-xs line-through text-gray-400 block">
+                                    AED {item.originalPrice.toFixed(2)}
+                                  </span>
+                                )}
+                                <span className="text-base font-bold text-gray-900">
+                                  AED {item.price.toFixed(2)}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Stock Status */}
+                            <div className="mt-1 sm:mt-2">
+                              {!item.inStock ? (
+                                <p className="text-xs sm:text-sm text-red-500">{item.deliveryEstimate}</p>
+                              ) : (
+                                <p className="text-xs sm:text-sm text-green-500">In Stock • {item.deliveryEstimate}</p>
+                              )}
+                            </div>
                           </div>
 
-                          {/* Desktop Price */}
-                          <div className="hidden md:block text-right">
-                            {item.originalPrice && (
-                              <span className="text-sm line-through text-gray-400 mr-2">
-                                AED {item.originalPrice.toFixed(2)}
-                              </span>
-                            )}
-                            <span className="text-lg font-semibold text-gray-900">
-                              AED {item.price.toFixed(2)}
-                            </span>
-                          </div>
-                        </div>
+                          {/* Quantity Controls */}
+                          <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                            <div className="flex items-center justify-between sm:justify-start">
+                              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                                <button 
+                                  className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                                  aria-label="Decrease quantity"
+                                >
+                                  <FaMinus size={12} />
+                                </button>
+                                <span className="px-3 py-2 text-center w-8 sm:w-12 font-medium text-sm sm:text-base">
+                                  {item.qty}
+                                </span>
+                                <button 
+                                  className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                                  aria-label="Increase quantity"
+                                >
+                                  <FaPlus size={12} />
+                                </button>
+                              </div>
 
-                        {/* Mobile Price */}
-                        <div className="md:hidden mt-3">
-                          {item.originalPrice && (
-                            <span className="text-sm line-through text-gray-400 mr-2">
-                              AED {item.originalPrice.toFixed(2)}
-                            </span>
-                          )}
-                          <span className="text-lg font-semibold text-gray-900">
-                            AED {item.price.toFixed(2)}
-                          </span>
-                        </div>
+                              {/* Price on desktop - shown only for desktop */}
+                              <div className="hidden sm:block ml-4">
+                                <span className="text-base font-semibold text-gray-900">
+                                  AED {(item.price * item.qty).toFixed(2)}
+                                </span>
+                              </div>
+                            </div>
 
-                        {/* Quantity Controls */}
-                        <div className="flex justify-between items-center mt-4">
-                          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                            <button 
-                              className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-                              aria-label="Decrease quantity"
-                            >
-                              <FaMinus size={14} />
-                            </button>
-                            <span className="px-4 py-2 text-center w-12 font-medium">{item.qty}</span>
-                            <button 
-                              className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-                              aria-label="Increase quantity"
-                            >
-                              <FaPlus size={14} />
-                            </button>
-                          </div>
-
-                          <div className="flex items-center">
-                            <span className="text-lg font-semibold text-gray-900 mr-4">
-                              AED {(item.price * item.qty).toFixed(2)}
-                            </span>
-                            <button className="text-red-600 hover:text-red-800 flex items-center transition-colors">
-                              <MdDelete className="mr-1" /> 
-                              <span className="text-sm font-medium">Remove</span>
-                            </button>
+                            <div className="flex justify-between sm:justify-end items-center">
+                              {/* Price on mobile - total price */}
+                              <div className="sm:hidden">
+                                <span className="text-sm font-semibold text-gray-900">
+                                  AED {(item.price * item.qty).toFixed(2)}
+                                </span>
+                              </div>
+                              <button className="text-red-600 hover:text-red-800 flex items-center text-sm transition-colors">
+                                <MdDelete className="mr-1" /> 
+                                <span>Remove</span>
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -200,97 +217,117 @@ const ShoppingCart = () => {
                   </div>
                 ))}
               </div>
+
+              {/* Savings Notice - Desktop */}
+              {totalSavings > 0 && (
+                <div className="hidden lg:block mt-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-center">
+                  <svg className="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                  <span className="text-green-700 font-medium">
+                    You're saving AED {totalSavings.toFixed(2)} on this order!
+                  </span>
+                </div>
+              )}
             </div>
 
-            {/* Order Summary */}
-            <div className="lg:w-1/3">
-              <div className="sticky top-6">
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-                  <div className="px-6 py-5 border-b">
+            {/* Order Summary - Hidden on mobile (shown in bottom bar) */}
+            <div className="hidden lg:block lg:w-1/3 mt-8 lg:mt-0">
+              <div className="sticky top-8">
+                <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                  <div className="px-6 py-5 bg-gray-50 border-b">
                     <h2 className="text-xl font-bold text-gray-900">Order Summary</h2>
                   </div>
 
-                  <div className="px-6 py-5 space-y-5">
-                    {/* Subtotal */}
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Subtotal ({totalItems} items)</span>
-                      <span className="font-medium">AED {subtotal.toFixed(2)}</span>
-                    </div>
+                  <div className="px-6 py-5 space-y-4">
+                    {/* Order Details */}
+                    <div className="space-y-3">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Subtotal ({totalItems} items)</span>
+                        <span className="font-medium">AED {subtotal.toFixed(2)}</span>
+                      </div>
 
-                    {/* Shipping */}
-                    <div>
-                      <label htmlFor="shipping" className="block text-sm font-medium text-gray-700 mb-2">Shipping</label>
-                      <select 
-                        id="shipping"
-                        className="w-full border-gray-300 rounded-lg shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-2 px-3"
-                      >
-                        <option>Standard Delivery - AED 25.00</option>
-                        <option>Express Delivery - AED 50.00</option>
-                        <option>Free Delivery (over AED 500) - AED 0.00</option>
-                      </select>
-                    </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Shipping</span>
+                        <span className="font-medium">AED {shipping.toFixed(2)}</span>
+                      </div>
 
-                    {/* Tax */}
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Tax (estimated)</span>
-                      <span className="font-medium">AED {tax.toFixed(2)}</span>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Tax (estimated)</span>
+                        <span className="font-medium">AED {tax.toFixed(2)}</span>
+                      </div>
                     </div>
 
                     {/* Promo Code */}
-                    <div>
-                      <label htmlFor="promo-code" className="block text-sm font-medium text-gray-700 mb-2">Promo Code</label>
+                    <div className="pt-2">
+                      <label htmlFor="promo-code" className="block text-sm font-medium text-gray-700 mb-2">
+                        Have a promo code?
+                      </label>
                       <div className="flex">
                         <input
                           type="text"
                           id="promo-code"
                           placeholder="Enter promo code"
-                          className="flex-1 border-gray-300 rounded-l-lg shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-2 px-3"
+                          className="flex-1 border border-gray-300 rounded-l-lg shadow-sm focus:border-purple-500 focus:ring-purple-500 text-sm py-2 px-3"
                         />
-                        <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-r-lg text-sm font-medium transition-colors">
+                        <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-r-lg text-sm font-medium transition-colors">
                           Apply
                         </button>
                       </div>
                     </div>
 
-                    {/* Divider */}
-                    <div className="border-t border-gray-200 my-2"></div>
-
                     {/* Total */}
-                    <div className="flex justify-between">
-                      <span className="text-lg font-bold text-gray-900">Total</span>
-                      <span className="text-lg font-bold text-gray-900">AED {total.toFixed(2)}</span>
+                    <div className="border-t border-gray-200 pt-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-lg font-bold text-gray-900">Total</span>
+                        <div className="text-right">
+                          <span className="text-lg font-bold text-gray-900 block">AED {total.toFixed(2)}</span>
+                          <span className="text-xs text-gray-500">or 4 interest-free payments of AED {(total/4).toFixed(2)}</span>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Checkout Button */}
-                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg text-base font-semibold shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                      Proceed to Checkout
+                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg text-base font-semibold shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-4">
+                      Proceed to Secure Checkout
                     </button>
 
                     {/* Payment Methods */}
-                    <div className="flex justify-center space-x-4 pt-2">
+                    <div className="flex justify-center space-x-4 pt-4">
                       <img src={Visa} alt="Visa" className="h-8" loading="lazy" />
                       <img src={Mastercard} alt="Mastercard" className="h-8" loading="lazy" />
                       <img src={PayPal} alt="PayPal" className="h-8" loading="lazy" />
                     </div>
+
+                    {/* Security Info */}
+                    <div className="flex items-center text-sm text-gray-500 pt-4">
+                      <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                      <span>Secure checkout with 256-bit SSL encryption</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Security Info */}
-                <div className="mt-4 bg-white rounded-xl shadow-sm overflow-hidden p-5">
+                {/* Customer Support */}
+                <div className="mt-4 bg-white rounded-xl shadow-md overflow-hidden p-5">
                   <div className="flex items-start">
-                    <svg className="h-6 w-6 text-green-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    <svg className="h-6 w-6 text-purple-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                     <div>
-                      <h3 className="text-base font-medium text-gray-900">Secure Checkout</h3>
-                      <p className="text-sm text-gray-500 mt-1">All transactions are secure and encrypted with 256-bit SSL protection</p>
+                      <h3 className="text-base font-medium text-gray-900">Need help?</h3>
+                      <p className="text-sm text-gray-500 mt-1">
+                        Call us at <a href="tel:+1234567890" className="text-purple-600 hover:underline">+1 (234) 567-890</a> or 
+                        <a href="mailto:support@yourstore.com" className="text-purple-600 hover:underline ml-1">email us</a>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </main>
       </div>
     </>
   );

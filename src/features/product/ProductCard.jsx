@@ -3,84 +3,59 @@ import { FiShoppingCart, FiStar } from "react-icons/fi";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="group relative bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 ease-in-out">
-      {/* Badge */}
-      {product.badge && (
-        <span className="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-semibold px-2 py-1 rounded z-10">
-          {product.badge}
-        </span>
-      )}
-      
-      {/* Product Image Container */}
-      <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
+    <div className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300">
+      <div className="relative w-full pb-[100%] sm:pb-[76%] overflow-hidden">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+          className="absolute top-0 left-0 w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+          loading="lazy"
         />
-        
-        {/* Hover Actions Container */}
-        <div className="absolute inset-0 bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          {/* Quick Add to Cart Button (Top Right) */}
-          <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md hover:bg-indigo-600 hover:text-white transition-all duration-200">
-            <FiShoppingCart className="h-5 w-5" />
-          </button>
-          
-          {/* Buy Now Button (Centered) */}
-          <button className="bg-indigo-600 text-white py-2 px-6 rounded-md shadow-lg hover:bg-indigo-700 transition-all duration-200 font-medium">
-            Buy Now
-          </button>
-        </div>
+        {product.badge && (
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white text-[8px] xs:text-[10px] tracking-wide font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm sm:shadow-md">
+            {product.badge}
+          </div>
+        )}
       </div>
-      
-      {/* Product Details */}
-      <div className="p-4">
-        {/* Rating */}
+
+      <div className="p-2 sm:p-3 md:p-4">
         <div className="flex items-center mb-1">
           <div className="flex">
             {[1, 2, 3, 4, 5].map((star) => (
               <FiStar
                 key={star}
-                className={`h-4 w-4 ${
+                className={`h-3 w-3 ${
                   star <= Math.round(product.rating)
                     ? "text-yellow-400 fill-yellow-400"
                     : "text-gray-300"
                 }`}
+                aria-hidden="true"
               />
             ))}
           </div>
           <span className="text-xs text-gray-500 ml-1">({product.reviews})</span>
         </div>
-        
-        {/* Product Name */}
-        <h3 className="text-sm font-medium text-gray-900 mb-1 line-clamp-2">
+
+        <h3 className="text-xs sm:text-sm md:text-base font-semibold text-[#1a1a1a] mt-1 line-clamp-2">
           {product.name}
         </h3>
-        
-        {/* Price */}
-        <div className="mt-2">
-          <p className="text-lg font-semibold text-gray-900">
+
+        <div className="mt-1 sm:mt-2 flex justify-between items-center">
+          <span className="text-xs sm:text-sm md:text-base font-bold text-[#1a1a1a]">
             {product.price} AED
-          </p>
+          </span>
           {product.mrp && (
-            <div className="flex items-center gap-2">
-              <p className="text-sm text-gray-500 line-through">
-                {product.mrp} AED
-              </p>
-              <p className="text-sm font-medium text-green-600">
-                {product.discount}% OFF
-              </p>
-            </div>
+            <span className="text-[10px] sm:text-xs text-gray-500 line-through">
+              {product.mrp} AED
+            </span>
           )}
         </div>
-        
-        {/* Delivery Info */}
-        {product.fastDelivery && (
-          <p className="mt-1 text-xs text-green-600">Fast Delivery Available</p>
-        )}
+
+        <button className="mt-2 sm:mt-3 w-full bg-[#8b6b4a] hover:bg-[#6a4f36] text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition">
+          View Details
+        </button>
       </div>
     </div>
   );
 };
-
 export default ProductCard;

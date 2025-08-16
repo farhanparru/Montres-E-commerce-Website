@@ -1,39 +1,37 @@
 /* Base styles (Mobile First) */
 body {
-  font-size: 1rem; /* 16px default */
+  font-size: 16px; /* Default desktop font size */
   padding: 1rem;
   margin: 0;
   background: #fff;
 }
 
-/* Small phones (~480px) */
-@media (max-width: 30em) { /* 480px if 1em = 16px */
-  body { font-size: 0.875rem; } /* 14px */
+/* Small phones (≤ 480px) */
+@media (max-width: 480px) {
+  body { font-size: 14px; }
 }
 
-/* Larger phones / Small tablets */
-@media (min-width: 30.063em) and (max-width: 47.938em) { /* 481px–767px */
-  body { font-size: 0.9375rem; } /* 15px */
+/* Larger phones / small tablets (481px–767px) */
+@media (min-width: 481px) and (max-width: 767px) {
+  body { font-size: 15px; }
 }
 
-/* Tablets / iPads / Landscape phones */
-@media (min-width: 48em) and (max-width: 64em) { /* 768px–1024px */
-  body { font-size: 1rem; } /* 16px */
+/* Tablets / iPads / landscape phones (768px–1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  body { font-size: 16px; }
 }
 
-/* Medium laptops / desktops */
-@media (min-width: 64.063em) and (max-width: 80em) { /* 1025px–1280px */
-  body { font-size: 1.0625rem; } /* 17px */
+/* Medium laptops / desktops (1025px–1280px) */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  body { font-size: 17px; }
 }
 
-/* Large laptops / desktops */
-@media (min-width: 80.063em) and (max-width: 96em) { /* 1281px–1536px */
-  body { font-size: 1.125rem; } /* 18px */
+/* Large laptops / desktops (1281px–1536px) */
+@media (min-width: 1281px) and (max-width: 1536px) {
+  body { font-size: 18px; }
 }
 
-/* Very large desktops */
-@media (min-width: 96.063em) {
-  body { font-size: 1.1875rem; } /* 19px */
+/* Very large desktops (≥ 1537px) */
+@media (min-width: 1537px) {
+  body { font-size: 19px; }
 }
-
-

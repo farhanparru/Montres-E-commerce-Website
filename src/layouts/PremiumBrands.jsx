@@ -1,12 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
-import Rolex from "../assets/PremimumBrands/image.png";
-import Omega from "../assets/PremimumBrands/360_F_308911374_fGRIDIPYXi2UAn14huC25LcFgQIFoCjJ.jpg";
+import Rolex from "../assets/PremimumBrands/rolex-logo-editorial-illustration-free-vector.jpg";
+import Omega from "../assets/PremimumBrands/b6047a0809e6575a92443a6924e60eae.jpg";
 import AudemarsPiguet from "../assets/PremimumBrands/bbdc6dc34c14f4427a5d1fe1475cd453.jpg";
-import RichedMillen from "../assets/PremimumBrands/images (1).png";
-import PatekPhilippe from "../assets/PremimumBrands/Patek-Philippe-logo2.jpg";
-import Cartier from "../assets/PremimumBrands/OOGACR5TPNOJHBKMHDTUGXTS6E.jpg";
-import VacheronConstantin from "../assets/PremimumBrands/Vacheron-Constantin-emblem.jpg";
+import RichedMillen from "../assets/PremimumBrands/5782919d7dcd53a67171c3b81640633b.jpg";
+import PatekPhilippe from "../assets/PremimumBrands/1-7f05a788.png";
+import Cartier from "../assets/PremimumBrands/cartier-logo-png_seeklogo-26665.png";
+import VacheronConstantin from "../assets/PremimumBrands/20211211180920-61b4e95031459.jpg";
 import Hublot from "../assets/PremimumBrands/ac8cb0c703739077d236a5ffb03f9331.jpg";
 
 const PremiumBrands = () => {
@@ -130,11 +130,11 @@ const PremiumBrands = () => {
             itemScope
             itemType="https://schema.org/Brand"
           >
-            <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 gap-6 sm:gap-8 md:gap-10">
               {premiumBrands.map((brand) => (
                 <div 
                   key={brand.id}
-                  className="flex items-center justify-center"
+                  className="flex items-center justify-center group"
                   itemProp="logo"
                   itemScope
                   itemType="https://schema.org/ImageObject"
@@ -143,17 +143,17 @@ const PremiumBrands = () => {
                     href={brand.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="block w-full p-2 group"
+                    className="block w-full h-full p-3 sm:p-4 transition-all duration-300 hover:scale-105"
                     aria-label={`Visit ${brand.name} official website`}
                   >
-                    <div className="relative w-full h-16 sm:h-20 md:h-24 flex items-center justify-center transition-all duration-300 hover:scale-105">
+                    <div className="relative w-full h-24 sm:h-28 md:h-32 lg:h-36 flex items-center justify-center">
                       <img
                         src={brand.logo}
                         alt={brand.alt}
-                        className="h-full w-auto max-w-full object-contain object-center grayscale hover:grayscale-0 transition-all duration-300 opacity-90 hover:opacity-100"
+                        className="h-full w-auto max-w-full object-contain object-center grayscale hover:grayscale-0 transition-all duration-500 opacity-90 hover:opacity-100"
                         loading="lazy"
-                        width="120"
-                        height="60"
+                        width="160"
+                        height="80"
                         itemProp="url"
                       />
                       <meta itemProp="name" content={brand.name} />
@@ -165,10 +165,10 @@ const PremiumBrands = () => {
             </div>
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-14 text-center">
             <a
               href="/brands"
-              className="inline-block px-8 py-3 bg-black text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-300 text-lg"
+              className="inline-block px-8 py-3 bg-black text-white font-medium rounded-lg hover:bg-gray-800 transition-colors duration-300 text-lg hover:shadow-lg"
               aria-label="View all our premium watch brands"
             >
               Explore All Brands

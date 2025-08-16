@@ -97,7 +97,7 @@ const BrandNew = () => {
   return (
     <div className="bg-[#f8f5f2] min-h-[50vh] py-8"> 
       <Helmet>
-        <title>New Arrivals | Luxury Brands in Dubai | Premium Collections UAE</title>
+        <title>Montres Trading L.L.C – The Art Of Time</title>
         <meta name="description" content="Discover our newest luxury arrivals in Dubai - Coach, Breitling, Bally, Alfred Dunhill. Authentic products with free UAE delivery and warranty." />
         <meta name="keywords" content="new luxury brands Dubai, Breitling watches UAE, Coach bags Dubai, Bally leather UAE, Alfred Dunhill Dubai" />
       </Helmet>

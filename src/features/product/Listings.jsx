@@ -6,7 +6,7 @@ import Watch2 from "../../assets/Watche/stylish-golden-watch-white-surface.jpg";
 import watch3 from "../../assets/Watche/rendering-smart-home-device.jpg";
 import watch4 from "../../assets/Watche/closeup-shot-hand-watch-with-bstrap-reflective-surface.jpg";
 import watch5 from "../../assets/Watche/beautiful-rendering-steel-object (1).jpg";
-import watch6 from "../../assets/Watche/elegant-watch-with-silver-golden-chain-isolated.jpg";
+
 
 import bag1 from "../../assets/HandBags/bag-hanging-from-furniture-item-indoors (1).jpg";
 import bag2 from "../../assets/HandBags/black-bag-with-scarf.jpg";
@@ -67,12 +67,7 @@ const data = [
         image: watch5,
         brand: "Vacheron Constantin",
       },
-      {
-        price: "15,800 AED",
-        quantity: "Masterpiece",
-        image: watch6,
-        brand: "Vacheron Constantin",
-      },
+     
     ],
   },
   {
@@ -110,12 +105,7 @@ const data = [
         brand: "Hermès",
       },
 
-      {
-        price: "32,000 AED",
-        quantity: "Signature",
-        image: bag4,
-        brand: "Hermès",
-      },
+   
     ],
   },
   {
@@ -151,12 +141,7 @@ const data = [
         image: Jewelry4,
         brand: "Van Cleef & Arpels",
       },
-      {
-        price: "28,000 AED",
-        quantity: "Platinum",
-        image: Jewelry4,
-        brand: "Van Cleef & Arpels",
-      },
+    
     ],
   },
   {
@@ -192,12 +177,7 @@ const data = [
         image: Clocks4,
         brand: "Jaeger-LeCoultre",
       },
-      {
-        price: "45,000 AED",
-        quantity: "Grandfather",
-        image: Clocks4,
-        brand: "Jaeger-LeCoultre",
-      },
+     
     ],
   },
   {
@@ -233,12 +213,7 @@ const data = [
         image: Cufflinks4,
         brand: "Deakin & Francis",
       },
-      {
-        price: "6,500 AED",
-        quantity: "Platinum Set",
-        image: Cufflinks4,
-        brand: "Deakin & Francis",
-      },
+    
     ],
   },
   {
@@ -275,12 +250,7 @@ const data = [
         image: HomeAccessories4,
         brand: "Swarovski",
       },
-      {
-        price: "15,000 AED",
-        quantity: "Crystal Decor",
-        image: HomeAccessories4,
-        brand: "Swarovski",
-      },
+    
     ],
   },
 ];
@@ -289,103 +259,72 @@ const Listings = () => {
   return (
     <>
       <Head>
-        <title>
-          Luxury Goods Dubai | Premium Watches, Jewelry & Accessories in UAE
-        </title>
-        <meta
-          name="description"
-          content="Discover authentic luxury watches, jewelry, bags and home accessories in Dubai. Free shipping across UAE with certification of authenticity for all premium items."
-        />
-        <meta
-          name="keywords"
-          content="luxury watches Dubai, designer bags UAE, diamond jewelry, premium accessories, Dubai luxury shopping"
-        />
-        <meta
-          property="og:title"
-          content="Luxury Goods Dubai | Premium Collections in UAE"
-        />
-        <meta
-          property="og:description"
-          content="Authentic luxury items with free UAE delivery and certification"
-        />
+        <title>Luxury Goods Dubai | Premium Watches, Jewelry & Accessories in UAE</title>
+        <meta name="description" content="Discover authentic luxury watches, jewelry, bags and home accessories in Dubai. Free shipping across UAE with certification of authenticity for all premium items." />
+        <meta name="keywords" content="luxury watches Dubai, designer bags UAE, diamond jewelry, premium accessories, Dubai luxury shopping" />
+        <meta property="og:title" content="Luxury Goods Dubai | Premium Collections in UAE" />
+        <meta property="og:description" content="Authentic luxury items with free UAE delivery and certification" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.yourluxurystore.ae" />
         <meta property="og:image" content="/images/luxury-store-social.jpg" />
-        <link
-          rel="canonical"
-          href="https://www.yourluxurystore.ae/collections"
-        />
+        <link rel="canonical" href="https://www.yourluxurystore.ae/collections" />
       </Head>
 
       <div className="bg-[#f8f5f2] min-h-screen">
         {/* Product Grid */}
-        <div className="w-full px-4 sm:px-6 py-8">
+        <div className="w-full px-3 sm:px-4 md:px-6 py-6 md:py-8">
           {data.map((section, index) => (
-            <div key={index} className="mb-12">
-              <div className="flex justify-between items-center mb-6 px-2">
-                <h2
-                  className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-4 relative pb-2 
-                after:content-[''] after:absolute after:bottom-0 after:left-0 
-                after:w-16 after:h-0.5 after:bg-[#8b6b4a]"
-                >
+            <div key={index} className="mb-10 md:mb-12">
+              <div className="flex justify-between items-center mb-4 md:mb-6 px-1">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3 md:mb-4 relative pb-2 
+                  after:content-[''] after:absolute after:bottom-0 after:left-0 
+                  after:w-12 sm:after:w-16 after:h-0.5 after:bg-[#8b6b4a]">
                   {section.title}
                 </h2>
-                <button className="text-sm font-medium text-[#8b6b4a] hover:text-[#6a4f36] transition">
+                <button className="text-xs sm:text-sm font-medium text-[#8b6b4a] hover:text-[#6a4f36] transition">
                   View All →
                 </button>
               </div>
 
-              <div className="w-full overflow-x-auto">
-                <div
-                  className="flex gap-4 pb-6 px-2"
-                  style={{
-                    minWidth: `${section.items.length * 288}px`,
-                    marginLeft: "55px",
-                  }}
-                >
-                  {section.items.map((item, i) => (
-                    <div
-                      key={i}
-                      className="group flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300"
-                    >
-                      <div className="relative w-full h-48 overflow-hidden">
-                        <img
-                          src={
-                            typeof item.image === "string"
-                              ? item.image
-                              : item.image?.src
-                          }
-                          alt={`${item.brand} ${section.title}`}
-                          className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
-                          loading="lazy"
-                        />
-                        <div className="absolute top-3 right-3 bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white text-[10px] tracking-wide font-semibold px-3 py-1 rounded-full shadow-md">
-                          New Arrival
-                        </div>
-                      </div>
-
-                      <div className="p-4">
-                        <p className="text-sm text-[#8b6b4a] font-medium">
-                          {item.brand}
-                        </p>
-                        <h3 className="text-base font-semibold text-[#1a1a1a] mt-1">
-                          {section.title.split(" ")[0]} Collection
-                        </h3>
-                        <div className="mt-2 flex justify-between items-center">
-                          <span className="text-base font-bold text-[#1a1a1a]">
-                            {item.price}
-                          </span>
-                          <span className="text-xs text-gray-500">
-                            {item.quantity}
-                          </span>
-                        </div>
-                        <button className="mt-3 w-full bg-[#8b6b4a] hover:bg-[#6a4f36] text-white py-2 rounded-md text-sm transition">
-                          View Collection
-                        </button>
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 px-1">
+                {section.items.map((item, i) => (
+                  <div
+                    key={i}
+                    className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300"
+                  >
+                    <div className="relative w-full pb-[100%] sm:pb-[76%] overflow-hidden">
+                      <img
+                        src={typeof item.image === "string" ? item.image : item.image?.src}
+                        alt={`${item.brand} ${section.title}`}
+                        className="absolute top-0 left-0 w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white text-[8px] xs:text-[10px] tracking-wide font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm sm:shadow-md">
+                        New Arrival
                       </div>
                     </div>
-                  ))}
-                </div>
+
+                    <div className="p-2 sm:p-3 md:p-4">
+                      <p className="text-xs sm:text-sm text-[#8b6b4a] font-medium truncate">
+                        {item.brand}
+                      </p>
+                      <h3 className="text-xs sm:text-sm md:text-base font-semibold text-[#1a1a1a] mt-1 line-clamp-2">
+                        {section.title.split(" ")[0]} Collection
+                      </h3>
+                      <div className="mt-1 sm:mt-2 flex justify-between items-center">
+                        <span className="text-xs sm:text-sm md:text-base font-bold text-[#1a1a1a]">
+                          {item.price}
+                        </span>
+                        <span className="text-[10px] sm:text-xs text-gray-500">
+                          {item.quantity}
+                        </span>
+                      </div>
+                      <button className="mt-2 sm:mt-3 w-full bg-[#8b6b4a] hover:bg-[#6a4f36] text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition">
+                        View Collection
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}

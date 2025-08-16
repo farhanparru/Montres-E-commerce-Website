@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import ProductCard from "../../features/product/ProductCard";
 import FilterSidebar from "../../features/product/ProductFilterSidebar";
-import watch from "../../assets/Watche/pixelcut-export-2-1.png";
+import watch from "../../assets/Watche/elegant-watch-with-silver-golden-chain-isolated.jpg";
 import watch2 from '../../assets/Watche/rendering-smart-home-device (1).jpg'
 import watch3 from '../../assets/Watche/stylish-golden-watch-white-surface.jpg'
 import watch4 from '../../assets/Watche/closeup-shot-hand-watch-with-bstrap-reflective-surface.jpg'
@@ -90,22 +90,7 @@ const products = [
     brand: "Patek Philippe",
     category: "Luxury",
   },
-  {
-    id: 6,
-    name: "Casio G-Shock Black Resin Strap",
-    price: "450.0",
-    mrp: "500.0",
-    discount: "10",
-    rating: 4.3,
-    reviews: 32,
-    badge: "Best Value",
-    image: watch,
-    inStock: true,
-    fastDelivery: true,
-    warranty: "1 Year",
-    brand: "Casio",
-    category: "Sports",
-  },
+ 
 ];
 
 const WatchProductPage = () => {
@@ -225,30 +210,21 @@ const WatchProductPage = () => {
   // Get unique brands for brand filter
   const brands = [...new Set(products.map((product) => product.brand))];
 
-  return (
+return (
     <>
       <Head>
-        <title>Premium Watches Collection | YourStore</title>
-        <meta name="description" content="Shop luxury watches collection" />
+        <title>Premium Watches Collection | Montres Trading L.L.C</title>
+        <meta name="description" content="Shop our luxury watch collections" />
       </Head>
 
-      <div className="bg-gray-50 min-h-screen">
-        <div className="container mx-auto px-4 py-6">
-          {/* Enhanced Breadcrumbs */}
-          <nav className="flex mb-6" aria-label="Breadcrumb">
+      <div className="bg-[#f8f5f2] min-h-screen">
+        <div className="w-full px-3 sm:px-4 md:px-6 py-6 md:py-8">
+          {/* Breadcrumbs */}
+          <nav className="flex mb-4 md:mb-6" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 md:space-x-2">
               <li className="inline-flex items-center">
-                <a
-                  href="#"
-                  className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-indigo-600"
-                >
-                  <svg
-                    className="w-3 h-3 mr-2.5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
+                <a href="#" className="inline-flex items-center text-xs sm:text-sm font-medium text-gray-700 hover:text-[#8b6b4a]">
+                  <svg className="w-3 h-3 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                   </svg>
                   Home
@@ -256,22 +232,10 @@ const WatchProductPage = () => {
               </li>
               <li aria-current="page">
                 <div className="flex items-center">
-                  <svg
-                    className="w-3 h-3 text-gray-400 mx-1"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 6 10"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m1 9 4-4-4-4"
-                    />
+                  <svg className="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4" />
                   </svg>
-                  <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2">
+                  <span className="ml-1 text-xs sm:text-sm font-medium text-gray-500 md:ml-2">
                     Watches
                   </span>
                 </div>
@@ -282,47 +246,50 @@ const WatchProductPage = () => {
           {/* Mobile filter button */}
           <button
             type="button"
-            className="md:hidden flex items-center gap-2 mb-4 text-gray-700"
+            className="md:hidden flex items-center gap-1 mb-4 text-gray-700 text-xs sm:text-sm"
             onClick={() => setMobileFiltersOpen(true)}
           >
-            <FiFilter className="h-5 w-5" />
+            <FiFilter className="h-4 w-4" />
             <span>Filters</span>
           </button>
 
-          <div className="flex flex-col md:flex-row gap-[35px]">
-            <FilterSidebar
-              activeFilters={activeFilters}
-              toggleFilter={toggleFilter}
-              mobileFiltersOpen={mobileFiltersOpen}
-              setMobileFiltersOpen={setMobileFiltersOpen}
-              brands={brands}
-              brandSearch={brandSearch}
-              setBrandSearch={setBrandSearch}
-              clearAllFilters={clearAllFilters}
-            />
+       <div className="flex flex-col md:flex-row">
+        {/* FilterSidebar - will be positioned absolutely on mobile */}
+        <div className="md:w-80 md:block">
+          <FilterSidebar
+            activeFilters={activeFilters}
+            toggleFilter={toggleFilter}
+            mobileFiltersOpen={mobileFiltersOpen}
+            setMobileFiltersOpen={setMobileFiltersOpen}
+            brands={brands}
+            brandSearch={brandSearch}
+            setBrandSearch={setBrandSearch}
+            clearAllFilters={clearAllFilters}
+          />
+        </div>
 
             <div className="flex-1">
               {/* Page header and sort options */}
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 md:mb-6">
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Watches</h1>
-                  <p className="text-gray-500 mt-1">
-                    {sortedProducts.length}{" "}
-                    {sortedProducts.length === 1 ? "product" : "products"}
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3 md:mb-4 relative pb-2 
+                    after:content-[''] after:absolute after:bottom-0 after:left-0 
+                    after:w-12 sm:after:w-16 after:h-0.5 after:bg-[#8b6b4a]">
+                    Watch Collections
+                  </h2>
+                  <p className="text-xs sm:text-sm text-gray-500">
+                    {sortedProducts.length} {sortedProducts.length === 1 ? "product" : "products"}
                   </p>
                 </div>
 
-                <div className="mt-4 md:mt-0">
+                <div className="mt-2 md:mt-0">
                   <div className="flex items-center">
-                    <label
-                      htmlFor="sort"
-                      className="mr-2 text-sm font-medium text-gray-700"
-                    >
+                    <label htmlFor="sort" className="mr-2 text-xs sm:text-sm font-medium text-gray-700">
                       Sort by:
                     </label>
                     <select
                       id="sort"
-                      className="rounded-md border border-gray-300 py-1 pl-2 pr-8 text-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                      className="rounded-md border border-gray-300 py-1 pl-2 pr-8 text-xs sm:text-sm focus:border-[#8b6b4a] focus:outline-none focus:ring-1 focus:ring-[#8b6b4a]"
                       value={sortOption}
                       onChange={(e) => setSortOption(e.target.value)}
                     >
@@ -337,30 +304,28 @@ const WatchProductPage = () => {
               </div>
 
               {/* Active filters */}
-              {Object.values(activeFilters).some(
-                (filters) => filters.length > 0
-              ) && (
-                <div className="mb-6 flex flex-wrap gap-2">
+              {Object.values(activeFilters).some((filters) => filters.length > 0) && (
+                <div className="mb-4 flex flex-wrap gap-1.5">
                   {Object.entries(activeFilters).map(([type, filters]) =>
                     filters.map((value) => (
                       <span
                         key={`${type}-${value}`}
-                        className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700"
+                        className="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700"
                       >
                         {value}
                         <button
                           type="button"
-                          className="ml-1.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-gray-400 hover:bg-gray-200 hover:text-gray-500"
+                          className="ml-1 inline-flex h-3 w-3 flex-shrink-0 items-center justify-center rounded-full text-gray-400 hover:bg-gray-200 hover:text-gray-500"
                           onClick={() => toggleFilter(type, value)}
                         >
-                          <FiX className="h-3 w-3" />
+                          <FiX className="h-2.5 w-2.5" />
                         </button>
                       </span>
                     ))
                   )}
                   <button
                     onClick={clearAllFilters}
-                    className="text-sm text-indigo-600 hover:text-indigo-800"
+                    className="text-xs text-[#8b6b4a] hover:text-[#6a4f36]"
                   >
                     Clear all
                   </button>
@@ -370,7 +335,7 @@ const WatchProductPage = () => {
               {/* Product grid */}
               {sortedProducts.length > 0 ? (
                 <>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
                     {sortedProducts
                       .slice(
                         (currentPage - 1) * productsPerPage,
@@ -382,10 +347,10 @@ const WatchProductPage = () => {
                   </div>
 
                   {/* Pagination */}
-                  <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-6">
+                  <div className="mt-6 flex items-center justify-between border-t border-gray-200 pt-4">
                     <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                       <div>
-                        <p className="text-sm text-gray-700">
+                        <p className="text-xs sm:text-sm text-gray-700">
                           Showing{" "}
                           <span className="font-medium">
                             {(currentPage - 1) * productsPerPage + 1}
@@ -410,50 +375,32 @@ const WatchProductPage = () => {
                           aria-label="Pagination"
                         >
                           <button
-                            onClick={() =>
-                              setCurrentPage((prev) => Math.max(prev - 1, 1))
-                            }
+                            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                             disabled={currentPage === 1}
-                            className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
+                            className="relative inline-flex items-center rounded-l-md px-2 py-1.5 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
                           >
                             <span className="sr-only">Previous</span>
-                            <svg
-                              className="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              aria-hidden="true"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                                clipRule="evenodd"
-                              />
+                            <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
                             </svg>
                           </button>
 
                           {Array.from({
-                            length: Math.ceil(
-                              sortedProducts.length / productsPerPage
-                            ),
+                            length: Math.ceil(sortedProducts.length / productsPerPage),
                           }).map((_, index) => {
                             const pageNumber = index + 1;
-                            // Show first page, last page, and pages around current page
                             if (
                               pageNumber === 1 ||
-                              pageNumber ===
-                                Math.ceil(
-                                  sortedProducts.length / productsPerPage
-                                ) ||
-                              (pageNumber >= currentPage - 1 &&
-                                pageNumber <= currentPage + 1)
+                              pageNumber === Math.ceil(sortedProducts.length / productsPerPage) ||
+                              (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)
                             ) {
                               return (
                                 <button
                                   key={pageNumber}
                                   onClick={() => setCurrentPage(pageNumber)}
-                                  className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${
+                                  className={`relative inline-flex items-center px-3 py-1.5 text-xs sm:text-sm font-semibold ${
                                     currentPage === pageNumber
-                                      ? "bg-indigo-600 text-white"
+                                      ? "bg-[#8b6b4a] text-white"
                                       : "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                                   } focus:z-20 focus:outline-offset-0`}
                                 >
@@ -461,21 +408,14 @@ const WatchProductPage = () => {
                                 </button>
                               );
                             }
-                            // Show ellipsis for gaps
                             if (
-                              (pageNumber === currentPage - 2 &&
-                                currentPage > 3) ||
-                              (pageNumber === currentPage + 2 &&
-                                currentPage <
-                                  Math.ceil(
-                                    sortedProducts.length / productsPerPage
-                                  ) -
-                                    2)
+                              (pageNumber === currentPage - 2 && currentPage > 3) ||
+                              (pageNumber === currentPage + 2 && currentPage < Math.ceil(sortedProducts.length / productsPerPage) - 2)
                             ) {
                               return (
                                 <span
                                   key={pageNumber}
-                                  className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300"
+                                  className="relative inline-flex items-center px-3 py-1.5 text-xs sm:text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300"
                                 >
                                   ...
                                 </span>
@@ -489,30 +429,16 @@ const WatchProductPage = () => {
                               setCurrentPage((prev) =>
                                 Math.min(
                                   prev + 1,
-                                  Math.ceil(
-                                    sortedProducts.length / productsPerPage
-                                  )
+                                  Math.ceil(sortedProducts.length / productsPerPage)
                                 )
                               )
                             }
-                            disabled={
-                              currentPage ===
-                              Math.ceil(sortedProducts.length / productsPerPage)
-                            }
-                            className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
+                            disabled={currentPage === Math.ceil(sortedProducts.length / productsPerPage)}
+                            className="relative inline-flex items-center rounded-r-md px-2 py-1.5 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 disabled:opacity-50"
                           >
                             <span className="sr-only">Next</span>
-                            <svg
-                              className="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                              aria-hidden="true"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l4.5 4.25a.75.75 0 11-1.04 1.08L11.168 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
-                                clipRule="evenodd"
-                              />
+                            <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l4.5 4.25a.75.75 0 11-1.04 1.08L11.168 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd" />
                             </svg>
                           </button>
                         </nav>
@@ -521,17 +447,16 @@ const WatchProductPage = () => {
                   </div>
                 </>
               ) : (
-                <div className="text-center py-12">
-                  <h3 className="text-lg font-medium text-gray-900">
+                <div className="text-center py-8">
+                  <h3 className="text-sm sm:text-base font-medium text-gray-900">
                     No products found
                   </h3>
-                  <p className="mt-2 text-gray-500">
-                    Try adjusting your search or filter to find what you're
-                    looking for.
+                  <p className="mt-1 text-xs sm:text-sm text-gray-500">
+                    Try adjusting your search or filter to find what you're looking for.
                   </p>
                   <button
                     onClick={clearAllFilters}
-                    className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="mt-3 inline-flex items-center px-3 py-1.5 border border-transparent text-xs sm:text-sm font-medium rounded-md shadow-sm text-white bg-[#8b6b4a] hover:bg-[#6a4f36] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8b6b4a]"
                   >
                     Clear all filters
                   </button>
@@ -544,5 +469,6 @@ const WatchProductPage = () => {
     </>
   );
 };
+
 
 export default WatchProductPage;

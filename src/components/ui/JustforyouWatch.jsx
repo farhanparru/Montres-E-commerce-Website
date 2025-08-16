@@ -1,122 +1,261 @@
 import React from 'react';
+import Head from 'next/head';
 import { FaCartPlus, FaHeart, FaStar } from 'react-icons/fa';
 import { BsBoxSeam } from 'react-icons/bs';
-import MontreBrand from '../../assets/Watche/ChatGPT Image Aug 10, 2025, 10_35_04 PM.png';
+import WatchBrandIm from '../../assets/Watche/elegant-watch-with-silver-golden-chain-isolated.jpg';
 
 const JustforyouWatch = () => {
-  const products = Array.from({ length: 6 }, (_, i) => ({
-    id: i + 1,
-    name: 'Hermès Kelly Red Watch 20mm',
-    brand: 'Hermès',
-    price: '4,000.00 AED',
-    originalPrice: i % 3 === 0 ? '5,200.00 AED' : null,
-    image: MontreBrand,
-    info: i < 4 ? `MOQ: ${[100, 35, 80, 50][i]} Pieces` : `Sold: 120 Pieces`,
-    rating: (Math.random() * 2 + 3).toFixed(1),
-    isFeatured: i % 4 === 0,
-    isFastShipping: i % 3 === 0,
-  }));
+  const brandWatches = [
+    {
+      id: 1,
+      name: "Sello Yacht Timer",
+      price: "1,000.00 AED",
+      originalPrice: "1,200.00 AED",
+      image: WatchBrandIm.src || WatchBrandIm,
+      rating: 4.5,
+      reviewCount: 128,
+      brand: "Sello",
+      info: "MOQ: 100 Pieces",
+      features: ["Water resistant", "Chronograph", "Stainless steel"],
+      isNew: true,
+      isFastShipping: true
+    },
+    {
+      id: 2,
+      name: "Sello Regatta Yacht Timer",
+      price: "950.00 AED",
+      originalPrice: "1,100.00 AED",
+      image: WatchBrandIm.src || WatchBrandIm,
+      rating: 4.2,
+      reviewCount: 86,
+      brand: "Sello",
+      info: "MOQ: 35 Pieces",
+      features: ["Luminous hands", "120m water resistant", "Sapphire crystal"],
+      isNew: false,
+      isFastShipping: false
+    },
+    {
+      id: 3,
+      name: "Sello Men's Presage",
+      price: "850.00 AED",
+      originalPrice: "1,000.00 AED",
+      image: WatchBrandIm.src || WatchBrandIm,
+      rating: 4.7,
+      reviewCount: 215,
+      brand: "Sello",
+      info: "MOQ: 80 Pieces",
+      features: ["Automatic movement", "Leather strap", "Date display"],
+      isNew: true,
+      isFastShipping: true
+    },
+    {
+      id: 4,
+      name: "Sello Heritage Chrono",
+      price: "1,200.00 AED",
+      originalPrice: "1,500.00 AED",
+      image: WatchBrandIm.src || WatchBrandIm,
+      rating: 4.8,
+      reviewCount: 342,
+      brand: "Sello",
+      info: "Sold: 120 Pieces",
+      features: ["Limited edition", "Automatic", "42mm case"],
+      isNew: false,
+      isBestseller: true,
+      isFastShipping: false
+    },
+    {
+      id: 5,
+      name: "Sello Diver Pro",
+      price: "1,100.00 AED",
+      originalPrice: "1,300.00 AED",
+      image: WatchBrandIm.src || WatchBrandIm,
+      rating: 4.6,
+      reviewCount: 178,
+      brand: "Sello",
+      info: "MOQ: 50 Pieces",
+      features: ["300m water resistant", "Rotating bezel", "Rubber strap"],
+      isNew: false,
+      isFastShipping: true
+    }
+  ];
+
+  // Generate structured data for all products
+  const productStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": brandWatches.map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.name,
+        "image": product.image,
+        "description": `${product.brand} ${product.name} - ${product.features.join(', ')}`,
+        "brand": {
+          "@type": "Brand",
+          "name": product.brand
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": product.price.replace(/[^0-9.]/g, ''),
+          "priceCurrency": "AED",
+          "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+          "availability": "https://schema.org/InStock",
+          "url": `https://www.yourluxurystore.ae/products/${product.id}`
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": product.rating,
+          "reviewCount": product.reviewCount
+        }
+      }
+    }))
+  };
 
   return (
-    <div className="bg-[#f8f5f2] min-h-[50vh] py-8">
-      <div className="w-full px-4 sm:px-6 py-8">
-        <div className="mb-12">
-          {/* Section Header */}
-          <div className="flex justify-between items-center mb-6 px-2">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-4 relative pb-2 
-              after:content-[''] after:absolute after:bottom-0 after:left-0 
-              after:w-16 after:h-0.5 after:bg-[#8b6b4a]">
-              Just For You
-            </h2>
-            <button className="text-sm font-medium text-[#8b6b4a] hover:text-[#6a4f36] transition">
-              View All →
-            </button>
-          </div>
+    <>
+      <Head>
+        <title>Premium Sello Watches Collection | Luxury Timepieces in UAE</title>
+        <meta name="description" content="Discover exclusive Sello watches just for you. Luxury yacht timers, chronographs, and diving watches with free UAE shipping and warranty. Best prices on premium timepieces." />
+        <meta name="keywords" content="Sello watches, luxury watches UAE, yacht timer, diving watches, chronograph watches, premium timepieces Dubai" />
+        
+        {/* Google / Search Engine Tags */}
+        <meta itemProp="name" content="Premium Sello Watches Collection | Luxury Timepieces in UAE" />
+        <meta itemProp="description" content="Discover exclusive Sello watches just for you. Luxury yacht timers, chronographs, and diving watches with free UAE shipping and warranty." />
+        <meta itemProp="image" content={WatchBrandIm.src || WatchBrandIm} />
+        
+        {/* Facebook Meta Tags */}
+        <meta property="og:url" content="https://www.yourluxurystore.ae/just-for-you" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Premium Sello Watches Collection | Luxury Timepieces in UAE" />
+        <meta property="og:description" content="Discover exclusive Sello watches just for you. Luxury yacht timers, chronographs, and diving watches with free UAE shipping and warranty." />
+        <meta property="og:image" content={WatchBrandIm.src || WatchBrandIm} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Premium Sello Watches Collection | Luxury Timepieces in UAE" />
+        <meta name="twitter:description" content="Discover exclusive Sello watches just for you. Luxury yacht timers, chronographs, and diving watches with free UAE shipping and warranty." />
+        <meta name="twitter:image" content={WatchBrandIm.src || WatchBrandIm} />
+        
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://www.yourluxurystore.ae/just-for-you" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productStructuredData) }}
+        />
+      </Head>
 
-          {/* Horizontal Scrolling Product Row */}
-          <div className="w-full overflow-x-auto">
-            <div
-              className="flex gap-4 pb-6 px-2"
-              style={{
-                minWidth: `${products.length * 288}px`,
-                marginLeft: "55px",
-              }}
-            >
-              {products.map((product) => (
+      <div className="bg-[#f8f5f2] min-h-[50vh] py-6 sm:py-8">
+        <div className="w-full px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
+          <div className="mb-8 md:mb-12">
+            {/* Section Header */}
+            <div className="flex justify-between items-center mb-4 md:mb-6 px-1">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3 md:mb-4 relative pb-2 
+                after:content-[''] after:absolute after:bottom-0 after:left-0 
+                after:w-12 sm:after:w-16 after:h-0.5 after:bg-[#8b6b4a]">
+                Just For You
+              </h2>
+              <button className="text-xs sm:text-sm font-medium text-[#8b6b4a] hover:text-[#6a4f36] transition">
+                View All →
+              </button>
+            </div>
+
+            {/* Grid Layout - Responsive columns */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 px-1">
+              {brandWatches.map((product) => (
                 <div
                   key={product.id}
-                  className="group flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300"
+                  className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300"
                 >
-                  {/* Product Image */}
-                  <div className="relative w-full aspect-square overflow-hidden">
+                  {/* Product Image with responsive aspect ratio */}
+                  <div className="relative w-full pb-[100%] sm:pb-[76%] overflow-hidden">
                     <img
                       src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+                      alt={`${product.brand} ${product.name} - ${product.features.join(', ')}`}
+                      className="absolute top-0 left-0 w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
                       loading="lazy"
                     />
                     {/* Badges */}
-                    {product.isFeatured && (
-                      <div className="absolute top-3 left-3 bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white text-[10px] tracking-wide font-semibold px-3 py-1 rounded-full shadow-md">
-                        Featured
-                      </div>
-                    )}
-                    <button className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md text-gray-500 hover:text-red-500 transition">
-                      <FaHeart size={14} />
+                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col space-y-1">
+                      {product.isNew && (
+                        <div className="bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white text-[8px] xs:text-[10px] tracking-wide font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm sm:shadow-md">
+                          New
+                        </div>
+                      )}
+                      {product.isBestseller && (
+                        <div className="bg-purple-600 text-white text-[8px] xs:text-[10px] tracking-wide font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm sm:shadow-md">
+                          Bestseller
+                        </div>
+                      )}
+                    </div>
+                    <button 
+                      className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-white p-1.5 sm:p-2 rounded-full shadow-sm sm:shadow-md text-gray-500 hover:text-red-500 transition"
+                      aria-label={`Add ${product.name} to favorites`}
+                    >
+                      <FaHeart size={10} className="sm:w-3 sm:h-3" />
                     </button>
                   </div>
 
                   {/* Product Details */}
-                  <div className="p-4">
-                    <p className="text-sm text-[#8b6b4a] font-medium">
+                  <div className="p-2 sm:p-3 md:p-4">
+                    <p className="text-xs sm:text-sm text-[#8b6b4a] font-medium truncate">
                       {product.brand}
                     </p>
-                    <h3 className="text-base font-semibold text-[#1a1a1a] mt-1">
+                    <h3 className="text-xs sm:text-sm md:text-base font-semibold text-[#1a1a1a] mt-1 line-clamp-2">
                       {product.name}
                     </h3>
                     
                     {/* Rating */}
-                    <div className="flex items-center mt-2">
+                    <div className="flex items-center mt-1 sm:mt-2">
                       <div className="flex text-[#FFD700]">
                         {[...Array(5)].map((_, i) => (
                           <FaStar
                             key={i}
-                            className={i < Math.floor(Number(product.rating)) ? 'fill-current' : 'fill-current opacity-30'}
-                            size={12}
+                            className={i < Math.floor(product.rating) ? 'fill-current' : 'fill-current opacity-30'}
+                            size={10}
+                            classname="sm:w-3 sm:h-3"
                           />
                         ))}
                       </div>
-                      <span className="text-xs text-gray-500 ml-1">
+                      <span className="text-[10px] sm:text-xs text-gray-500 ml-1">
                         ({product.rating})
                       </span>
                     </div>
 
                     {/* Price */}
-                    <div className="mt-2 flex justify-between items-center">
-                      <span className="text-base font-bold text-[#1a1a1a]">
+                    <div className="mt-1 sm:mt-2 flex justify-between items-center">
+                      <span className="text-sm sm:text-base font-bold text-[#1a1a1a]">
                         {product.price}
                       </span>
                       {product.originalPrice && (
-                        <span className="text-xs text-gray-500 line-through">
+                        <span className="text-[10px] sm:text-xs text-gray-500 line-through">
                           {product.originalPrice}
                         </span>
                       )}
                     </div>
 
                     {/* Info */}
-                    <div className="mt-2 flex justify-between items-center text-xs text-gray-500">
-                      <span>{product.info}</span>
+                    <div className="mt-1 sm:mt-2 flex justify-between items-center text-[10px] sm:text-xs text-gray-500">
+                      <span className="truncate">{product.info}</span>
                       {product.isFastShipping && (
-                        <span className="flex items-center text-green-600">
-                          <BsBoxSeam className="mr-1" size={12} />
+                        <span className="flex items-center text-green-600 whitespace-nowrap">
+                          <BsBoxSeam className="mr-0.5 sm:mr-1" size={10} classname="sm:w-3 sm:h-3" />
                           Fast Shipping
                         </span>
                       )}
                     </div>
 
                     {/* CTA Button */}
-                    <button className="mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-2 rounded-md text-sm transition flex items-center justify-center gap-2">
-                      <FaCartPlus size={14} /> Add to Cart
+                    <button 
+                      className="mt-2 sm:mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition flex items-center justify-center gap-1 sm:gap-2"
+                      aria-label={`Add ${product.name} to cart`}
+                    >
+                      <FaCartPlus size={10} className="sm:w-3 sm:h-3" /> 
+                      <span>Add to Cart</span>
                     </button>
                   </div>
                 </div>
@@ -125,7 +264,7 @@ const JustforyouWatch = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

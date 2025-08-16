@@ -6,10 +6,10 @@ const WatchForm = () => {
   return (
     <>
       <Head>
-        <title>Luxury Watch Repair Service Form | Montres Trading L.L.C</title>
+        <title>Luxury Watch Repair Service Form | Montres Trading L.L.C – The Art Of Time</title>
         <meta name="description" content="Get expert watch repair services for your luxury timepiece. Fill out our form to book professional maintenance and restoration services in Dubai." />
         <meta name="keywords" content="luxury watch repair, watch service, watch maintenance, Swiss watch repair, professional watch servicing" />
-        <meta property="og:title" content="Luxury Watch Repair Service Form | Montres Trading L.L.C" />
+        <meta property="og:title" content="Luxury Watch Repair Service Form | Montres Trading L.L.C – The Art Of Time" />
         <meta property="og:description" content="Professional watch repair services for high-end timepieces. Book your service today." />
         <meta property="og:image" content={watchBackground} />
         <meta property="og:url" content="https://montres.com/watch-repair-form" />

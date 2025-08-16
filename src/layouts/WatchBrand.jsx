@@ -86,22 +86,7 @@ const WatchBrand = () => {
       warranty: "2 Years UAE Warranty",
       isNew: false,
     },
-    {
-      id: 6,
-      name: "Sello Classic Automatic",
-      price: 900.0,
-      oldPrice: 1050.0,
-      currency: "AED",
-      image: WatchBrandIm.src || WatchBrandIm,
-      rating: 4.4,
-      reviewCount: 92,
-      brand: "Sello",
-      features: ["40mm case", "Exhibition caseback", "20ATM"],
-      delivery: "Free delivery in UAE",
-      warranty: "2 Years UAE Warranty",
-      isNew: true,
-      isLimited: true,
-    },
+ 
   ];
 
   const renderStars = (rating) => {
@@ -147,96 +132,100 @@ const WatchBrand = () => {
     );
   };
 
-  return (
-    <div className="bg-[#f8f5f2] min-h-[50vh] py-8">
-      <div className="w-full px-4 sm:px-6 py-8">
-        <div className="mb-12">
-          {/* Section Header */}
-          <div className="flex justify-between items-center mb-6 px-2">
-            <h2
-              className="text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-4 relative pb-2 
-                after:content-[''] after:absolute after:bottom-0 after:left-0 
-                after:w-16 after:h-0.5 after:bg-[#8b6b4a]"
-            >
-              Sello Watches
-            </h2>
-            <button className="text-sm font-medium text-[#8b6b4a] hover:text-[#6a4f36] transition">
-              View All →
-            </button>
-          </div>
 
-          {/* Scrollable Row */}
-          <div className="w-full overflow-x-auto">
-            <div
-              className="flex gap-4 pb-6 px-2"
-              style={{
-                minWidth: `${brandWatches.length * 288}px`,
-                marginLeft: "55px",
-              }}
-            >
+  return (
+    <>
+      <Head>
+        <title>Sello Watches Collection | Luxury Yacht Timers in Dubai</title>
+        <meta name="description" content="Discover premium Sello yacht timer watches in Dubai. Authentic luxury watches with free UAE delivery and warranty." />
+        <meta name="keywords" content="Sello watches, yacht timer, luxury watches Dubai, premium watches UAE" />
+      </Head>
+
+      <div className="bg-[#f8f5f2] min-h-[50vh] py-6 sm:py-8">
+        <div className="w-full px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
+          <div className="mb-8 md:mb-12">
+            {/* Section Header */}
+            <div className="flex justify-between items-center mb-4 md:mb-6 px-1">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1a1a1a] mb-3 md:mb-4 relative pb-2 
+                after:content-[''] after:absolute after:bottom-0 after:left-0 
+                after:w-12 sm:after:w-16 after:h-0.5 after:bg-[#8b6b4a]">
+                Sello Watches
+              </h2>
+              <button className="text-xs sm:text-sm font-medium text-[#8b6b4a] hover:text-[#6a4f36] transition">
+                View All →
+              </button>
+            </div>
+
+            {/* Grid Layout - Responsive columns */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 px-1">
               {brandWatches.map((item) => (
                 <div
                   key={item.id}
-                  className="group flex-shrink-0 w-72 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300"
+                  className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300"
                 >
-                  {/* Image */}
-                  <div className="relative w-full aspect-square overflow-hidden">
+                  {/* Image with responsive aspect ratio */}
+                  <div className="relative w-full pb-[100%] sm:pb-[76%] overflow-hidden">
                     <img
                       src={item.image}
                       alt={`${item.brand} ${item.name}`}
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
+                      className="absolute top-0 left-0 w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
                       loading="lazy"
                     />
-                    <div className="absolute top-3 left-3 flex flex-col space-y-1">
-                      {item.isNew && <Badge type="new">New Arrival</Badge>}
-                      {item.isBestseller && (
-                        <Badge type="bestseller">Bestseller</Badge>
-                      )}
-                      {item.isLimited && <Badge type="limited">Limited</Badge>}
+                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col space-y-1">
+                      {item.isNew && <Badge type="new">New</Badge>}
+                      {item.isBestseller && <Badge type="bestseller">Bestseller</Badge>}
                     </div>
                   </div>
 
-                  {/* Details */}
-                  <div className="p-4">
-                    <p className="text-sm text-[#8b6b4a] font-medium">
+                  {/* Product Details */}
+                  <div className="p-2 sm:p-3 md:p-4">
+                    <p className="text-xs sm:text-sm text-[#8b6b4a] font-medium truncate">
                       {item.brand}
                     </p>
-                    <h3 className="text-base font-semibold text-[#1a1a1a] mt-1">
+                    <h3 className="text-xs sm:text-sm md:text-base font-semibold text-[#1a1a1a] mt-1 line-clamp-2">
                       {item.name}
                     </h3>
 
                     {/* Price */}
-                    <div className="mt-2 flex items-center space-x-3">
-                      <span className="text-lg font-bold text-[#1a1a1a]">
+                    <div className="mt-1 sm:mt-2 flex items-center space-x-2 sm:space-x-3">
+                      <span className="text-sm sm:text-base md:text-lg font-bold text-[#1a1a1a]">
                         {item.currency} {item.price.toFixed(2)}
                       </span>
                       {item.oldPrice && (
-                        <span className="text-sm line-through text-gray-400">
+                        <span className="text-xs sm:text-sm line-through text-gray-400">
                           {item.currency} {item.oldPrice.toFixed(2)}
                         </span>
                       )}
                     </div>
 
                     {/* Rating and Reviews */}
-                    <div className="mt-2 flex items-center space-x-2">
-                      <div>{renderStars(item.rating)}</div>
-                      <span className="text-xs text-gray-600">
-                        ({item.reviewCount} reviews)
+                    <div className="mt-1 sm:mt-2 flex items-center space-x-1 sm:space-x-2">
+                      <div className="flex">
+                        {renderStars(item.rating).map((star, i) => (
+                          <span key={i} className="text-[10px] sm:text-xs">{star}</span>
+                        ))}
+                      </div>
+                      <span className="text-[10px] sm:text-xs text-gray-600">
+                        ({item.reviewCount})
                       </span>
                     </div>
 
                     {/* Features */}
-                    <ul className="mt-2 text-xs text-gray-700 list-disc list-inside">
-                      {item.features.map((feature, idx) => (
-                        <li key={idx}>{feature}</li>
+                    <ul className="mt-1 sm:mt-2 text-[10px] sm:text-xs text-gray-700 list-disc list-inside space-y-0.5">
+                      {item.features.slice(0, 2).map((feature, idx) => (
+                        <li key={idx} className="truncate">{feature}</li>
                       ))}
                     </ul>
 
                     {/* Delivery and Warranty */}
-                    <p className="mt-2 text-xs text-gray-600">{item.delivery}</p>
-                    <p className="text-xs text-gray-600">{item.warranty}</p>
+                    <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs text-gray-600 truncate">
+                      {item.delivery}
+                    </p>
+                    <p className="text-[10px] sm:text-xs text-gray-600 truncate">
+                      {item.warranty}
+                    </p>
 
-                    <button className="mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-2 rounded-md text-sm transition">
+                    <button className="mt-2 sm:mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition">
                       View Collection
                     </button>
                   </div>
@@ -246,7 +235,7 @@ const WatchBrand = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
