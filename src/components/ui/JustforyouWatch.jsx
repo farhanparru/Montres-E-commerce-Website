@@ -1,10 +1,20 @@
 import React from 'react';
 import Head from 'next/head';
-import { FaCartPlus, FaHeart, FaStar } from 'react-icons/fa';
+import { FaCartPlus, FaHeart, FaStar,
+  FaRegHeart } from 'react-icons/fa';
+
 import { BsBoxSeam } from 'react-icons/bs';
 import WatchBrandIm from '../../assets/Watche/elegant-watch-with-silver-golden-chain-isolated.jpg';
 
 const JustforyouWatch = () => {
+const [wishlist, setWishlist] = React.useState({});
+
+    const toggleWishlist = (productId) => {
+    setWishlist(prev => ({
+      ...prev,
+      [productId]: !prev[productId]
+    }));
+  };
   const brandWatches = [
     {
       id: 1,
@@ -149,7 +159,7 @@ const JustforyouWatch = () => {
         />
       </Head>
 
-      <div className="bg-[#f8f5f2] min-h-[50vh] py-6 sm:py-8">
+     <div className="bg-[#f8f5f2] min-h-[50vh] py-6 sm:py-8">
         <div className="w-full px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
           <div className="mb-8 md:mb-12">
             {/* Section Header */}
@@ -169,7 +179,7 @@ const JustforyouWatch = () => {
               {brandWatches.map((product) => (
                 <div
                   key={product.id}
-                  className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300"
+                  className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300 relative"
                 >
                   {/* Product Image with responsive aspect ratio */}
                   <div className="relative w-full pb-[100%] sm:pb-[76%] overflow-hidden">
@@ -179,25 +189,41 @@ const JustforyouWatch = () => {
                       className="absolute top-0 left-0 w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
                       loading="lazy"
                     />
-                    {/* Badges */}
+                    
+                    {/* Badges - Top Left */}
                     <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col space-y-1">
                       {product.isNew && (
-                        <div className="bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white text-[8px] xs:text-[10px] tracking-wide font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm sm:shadow-md">
-                          New
+                        <div className="bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white text-[10px] xs:text-xs sm:text-sm tracking-wide font-semibold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-md hover:shadow-lg transition-shadow duration-300 transform hover:scale-105">
+                          NEW ARRIVAL
                         </div>
                       )}
                       {product.isBestseller && (
-                        <div className="bg-purple-600 text-white text-[8px] xs:text-[10px] tracking-wide font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm sm:shadow-md">
-                          Bestseller
+                        <div className="bg-purple-600 text-white text-[10px] xs:text-xs sm:text-sm tracking-wide font-semibold px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-md">
+                          BESTSELLER
                         </div>
                       )}
                     </div>
-                    <button 
-                      className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-white p-1.5 sm:p-2 rounded-full shadow-sm sm:shadow-md text-gray-500 hover:text-red-500 transition"
-                      aria-label={`Add ${product.name} to favorites`}
+                    
+                    {/* Wishlist Button - Top Right */}
+                    <button
+                      onClick={() => toggleWishlist(product.id)}
+                      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-2 bg-white bg-opacity-70 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-opacity-100"
+                      aria-label={wishlist[product.id] ? "Remove from wishlist" : "Add to wishlist"}
                     >
-                      <FaHeart size={10} className="sm:w-3 sm:h-3" />
+                      {wishlist[product.id] ? (
+                        <FaHeart className="text-red-500" size={14} />
+                      ) : (
+                        <FaRegHeart className="text-gray-700 hover:text-red-500 transition-colors" size={14} />
+                      )}
                     </button>
+                    
+                    {/* Fast Shipping Badge - Bottom Left */}
+                    {product.isFastShipping && (
+                      <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 bg-green-600 text-white text-[10px] xs:text-xs font-semibold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-sm flex items-center">
+                        <BsBoxSeam className="mr-1" size={10} />
+                        <span>FAST SHIPPING</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Product Details */}
@@ -216,8 +242,7 @@ const JustforyouWatch = () => {
                           <FaStar
                             key={i}
                             className={i < Math.floor(product.rating) ? 'fill-current' : 'fill-current opacity-30'}
-                            size={10}
-                            classname="sm:w-3 sm:h-3"
+                            size={12}
                           />
                         ))}
                       </div>
@@ -239,22 +264,16 @@ const JustforyouWatch = () => {
                     </div>
 
                     {/* Info */}
-                    <div className="mt-1 sm:mt-2 flex justify-between items-center text-[10px] sm:text-xs text-gray-500">
-                      <span className="truncate">{product.info}</span>
-                      {product.isFastShipping && (
-                        <span className="flex items-center text-green-600 whitespace-nowrap">
-                          <BsBoxSeam className="mr-0.5 sm:mr-1" size={10} classname="sm:w-3 sm:h-3" />
-                          Fast Shipping
-                        </span>
-                      )}
+                    <div className="mt-1 sm:mt-2 text-[10px] sm:text-xs text-gray-500 truncate">
+                      {product.info}
                     </div>
 
-                    {/* CTA Button */}
+                    {/* Add to Cart Button */}
                     <button 
-                      className="mt-2 sm:mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition flex items-center justify-center gap-1 sm:gap-2"
+                       className="mt-2 sm:mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition flex items-center justify-center gap-1 sm:gap-2"
                       aria-label={`Add ${product.name} to cart`}
-                    >
-                      <FaCartPlus size={10} className="sm:w-3 sm:h-3" /> 
+                      >
+                      <FaCartPlus size={12} /> 
                       <span>Add to Cart</span>
                     </button>
                   </div>

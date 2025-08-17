@@ -5,10 +5,14 @@ import {
   FaStar,
   FaRegStar,
   FaStarHalfAlt,
+  FaShoppingCart,
+  FaHeart,
+  FaRegHeart
 } from "react-icons/fa";
 import WatchBrandIm from "../assets/Watche/rendering-smart-home-device.jpg";
 
 const WatchBrand = () => {
+    const [wishlist, setWishlist] = React.useState({});
   const brandWatches = [
     {
       id: 1,
@@ -112,33 +116,36 @@ const WatchBrand = () => {
     return stars;
   };
 
-  const Badge = ({ type, children }) => {
-    const baseClasses = "text-xs font-bold px-2 py-1 rounded-md shadow-sm";
 
+    const toggleWishlist = (itemId) => {
+    setWishlist(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
+
+    const Badge = ({ type, children }) => {
+    const baseClasses = "text-xs font-bold px-2 py-1 rounded-md shadow-sm";
     const typeClasses = {
       sale: "bg-red-600 text-white",
       discount: "bg-blue-600 text-white",
-      new: "bg-green-600 text-white",
+      new: "bg-gradient-to-r from-[#b58e5f] to-[#8b6b4a] text-white",
       bestseller: "bg-purple-600 text-white",
       limited: "bg-yellow-500 text-gray-900",
     };
 
     return (
-      <div
-        className={`${baseClasses} ${typeClasses[type]} flex items-center justify-center inline-block mr-2`}
-      >
+      <div className={`${baseClasses} ${typeClasses[type]} flex items-center justify-center`}>
         {children}
       </div>
     );
   };
-
 
   return (
     <>
       <Head>
         <title>Sello Watches Collection | Luxury Yacht Timers in Dubai</title>
         <meta name="description" content="Discover premium Sello yacht timer watches in Dubai. Authentic luxury watches with free UAE delivery and warranty." />
-        <meta name="keywords" content="Sello watches, yacht timer, luxury watches Dubai, premium watches UAE" />
       </Head>
 
       <div className="bg-[#f8f5f2] min-h-[50vh] py-6 sm:py-8">
@@ -156,14 +163,14 @@ const WatchBrand = () => {
               </button>
             </div>
 
-            {/* Grid Layout - Responsive columns */}
+            {/* Product Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 px-1">
               {brandWatches.map((item) => (
                 <div
                   key={item.id}
-                  className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300"
+                  className="group bg-white rounded-md sm:rounded-lg overflow-hidden shadow-sm sm:shadow-md hover:shadow-lg transition duration-300 relative"
                 >
-                  {/* Image with responsive aspect ratio */}
+                  {/* Product Image with Badges and Wishlist */}
                   <div className="relative w-full pb-[100%] sm:pb-[76%] overflow-hidden">
                     <img
                       src={item.image}
@@ -171,10 +178,33 @@ const WatchBrand = () => {
                       className="absolute top-0 left-0 w-full h-full object-cover object-center group-hover:scale-105 transition duration-500"
                       loading="lazy"
                     />
+                    
+                    {/* Badges - Top Left */}
                     <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col space-y-1">
-                      {item.isNew && <Badge type="new">New</Badge>}
-                      {item.isBestseller && <Badge type="bestseller">Bestseller</Badge>}
+                      {item.isNew && (
+                        <Badge type="new">
+                          <span className="text-[10px] xs:text-xs sm:text-sm tracking-wide">
+                            NEW ARRIVAL
+                          </span>
+                        </Badge>
+                      )}
+                      {item.isBestseller && (
+                        <Badge type="bestseller">Bestseller</Badge>
+                      )}
                     </div>
+                    
+                    {/* Wishlist Button - Top Right */}
+                    <button
+                      onClick={() => toggleWishlist(item.id)}
+                      className="absolute top-2 right-2 sm:top-3 sm:right-3 p-2 bg-white bg-opacity-70 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-opacity-100"
+                      aria-label={wishlist[item.id] ? "Remove from wishlist" : "Add to wishlist"}
+                    >
+                      {wishlist[item.id] ? (
+                        <FaHeart className="text-red-500" />
+                      ) : (
+                        <FaRegHeart className="text-gray-700 hover:text-red-500 transition-colors" />
+                      )}
+                    </button>
                   </div>
 
                   {/* Product Details */}
@@ -225,8 +255,10 @@ const WatchBrand = () => {
                       {item.warranty}
                     </p>
 
-                    <button className="mt-2 sm:mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition">
-                      View Collection
+                    {/* Add to Cart Button */}
+                    <button  className="mt-2 sm:mt-3 w-full bg-blue-900 hover:bg-blue-800 text-white py-1.5 sm:py-2 rounded text-xs sm:text-sm transition flex items-center justify-center gap-1 sm:gap-2">
+                      <FaShoppingCart />
+                      Add to Cart
                     </button>
                   </div>
                 </div>

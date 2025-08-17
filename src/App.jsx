@@ -19,6 +19,7 @@ import Services from "./components/ui/Services";
 import "../src/styles/responsive.css";
 import Blog from "./layouts/Blog";
 import Wishlist from "./components/ui/Wishlist";
+import ProductDetailPage from "./components/ui/ProductDetailPage";
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -52,6 +53,7 @@ function App() {
         />
         <Route path="/cart" element={<ItemCart />} />
         <Route path="/wishlist" element={<Wishlist/>}/>
+        <Route path="/DetailPage" element={<ProductDetailPage/>}/>
         <Route path="/watches/luxury" element={<ProductPage />} />
       </Routes>
       <Footer />
